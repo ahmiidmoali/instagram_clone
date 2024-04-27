@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/colors.dart';
 
 class CustomButtonLogin extends StatelessWidget {
   final Function()? onPressed;
@@ -13,7 +14,7 @@ class CustomButtonLogin extends StatelessWidget {
       height: 45,
       width: double.infinity,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10), color: Colors.blue),
+          borderRadius: BorderRadius.circular(10), color: MyColors.secondary1),
       child: MaterialButton(
         onPressed: onPressed,
         child: Container(
@@ -23,7 +24,7 @@ class CustomButtonLogin extends StatelessWidget {
           child: Text(
             nameOfButton,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
+            style: const TextStyle(fontSize: 20, color: MyColors.background),
           ),
         ),
       ),

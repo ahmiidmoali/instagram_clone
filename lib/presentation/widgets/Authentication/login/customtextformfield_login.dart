@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/colors.dart';
 
 class CustomTextFormFieldLogin extends StatelessWidget {
   final String hintText;
@@ -7,10 +8,15 @@ class CustomTextFormFieldLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 5),
+      decoration: BoxDecoration(
+          color: MyColors.secondary1, borderRadius: BorderRadius.circular(5)),
+      margin: EdgeInsets.only(bottom: 5),
       child: TextFormField(
+        // cursorColor: MyColors.secondary1,
         decoration: InputDecoration(
-            border: const OutlineInputBorder(), hintText: hintText),
+            border: const OutlineInputBorder(
+                borderSide: BorderSide(color: MyColors.secondary1, width: 5)),
+            hintText: hintText),
       ),
     );
   }

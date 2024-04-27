@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/constants/colors.dart';
 
 class CustomTextButtonLogin extends StatelessWidget {
   final Function()? onPressed;
@@ -12,7 +13,7 @@ class CustomTextButtonLogin extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         data,
-        style: TextStyle(fontSize: 15, color: Colors.blue),
+        style: TextStyle(fontSize: 15, color: MyColors.secondary1),
       ),
     );
   }

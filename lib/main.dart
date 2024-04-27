@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/presentation/screens/Authentication/login.dart';
+import 'package:instagram_clone/app_router.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp(
+    appRouter: AppRouter(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final AppRouter appRouter;
+  const MyApp({super.key, required this.appRouter});
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -25,7 +29,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const login(),
+      onGenerateRoute: appRouter.generateRoute,
     );
   }
 }
