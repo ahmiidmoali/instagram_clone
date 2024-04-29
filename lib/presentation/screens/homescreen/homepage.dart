@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
-import 'package:instagram_clone/constants/colors.dart';
-import 'package:instagram_clone/constants/images.dart';
+import 'package:instagram_clone/core/constants/colors.dart';
+import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/data/models/mainposts.dart';
 
 import '../../widgets/homepage/custom_post_homepage_widget.dart';

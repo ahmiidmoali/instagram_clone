@@ -1,13 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:instagram_clone/constants/links.dart';
+import 'package:instagram_clone/core/constants/links.dart';
 
 class PostsWebServices {
-  Future<List> getAllPosts() async {
+  Future<List> getAllPosts(String id) async {
     try {
       var response =
-          await http.post(Uri.parse(MyLink.profileScreen), body: {"id": "1"});
+          await http.post(Uri.parse(MyLink.profileScreen), body: {"id": id});
 
       Map responsebody = jsonDecode(response.body);
 

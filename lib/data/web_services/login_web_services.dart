@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:instagram_clone/data/models/usermodel.dart';
 
-import '../../constants/links.dart';
+import '../../core/constants/links.dart';
 
 class LoginWebServices {
   Future<List> tryLogin(String logintype, String email, String password) async {
@@ -14,8 +14,11 @@ class LoginWebServices {
         "password": password,
       });
       Map responsebody = jsonDecode(response.body);
-      print(responsebody);
-      return responsebody[0];
+      print(responsebody["data"]);
+      List responsebodyList = [];
+      responsebodyList.add(responsebody["data"]);
+      print("$responsebodyList");
+      return responsebodyList;
     } catch (e) {
       print("login request $e");
       return [];

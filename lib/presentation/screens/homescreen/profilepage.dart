@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
-import 'package:instagram_clone/constants/colors.dart';
-import 'package:instagram_clone/constants/images.dart';
-import 'package:instagram_clone/constants/links.dart';
+import 'package:instagram_clone/core/constants/colors.dart';
+import 'package:instagram_clone/core/constants/images.dart';
+import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 
 import '../../widgets/profile/custom_mid_button_profile.dart';

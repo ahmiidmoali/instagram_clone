@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-import 'package:instagram_clone/constants/links.dart';
+import 'package:instagram_clone/core/constants/links.dart';
 
 class MainPostsWebServices {
   Future<List> getAllmainPosts(String userid) async {

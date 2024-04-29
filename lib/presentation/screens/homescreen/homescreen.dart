@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
-import 'package:instagram_clone/constants/colors.dart';
+import 'package:instagram_clone/core/constants/colors.dart';
+
+import 'package:instagram_clone/main.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/homepage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/profilepage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/reelspage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/searchpage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../constants/images.dart';
+import '../../../core/constants/images.dart';
+import '../../../data/models/usermodel.dart';
 import '../../../data/web_services/posts_web_services.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/homescreen/custom_bottom_navigationbar_homescreen.dart';
 
 class homeScreen extends StatefulWidget {
-  const homeScreen({super.key});
+  final String userid;
+  const homeScreen({super.key, required this.userid});
 
   @override
   State<homeScreen> createState() => _homeScreenState();
@@ -22,7 +28,9 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   //-------temporaryLogic-------
+  // List<User> user = user[0].usersId;
   int currentPage = 0;
+
   List mypages = [
     const homePage(),
     const reelsPage(),
@@ -44,8 +52,8 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   void initState() {
-    BlocProvider.of<PostsCubit>(context).getAllPosts();
-    BlocProvider.of<MainPostsCubit>(context).getAllMainPosts("2");
+    BlocProvider.of<PostsCubit>(context).getAllPosts(widget.userid);
+    BlocProvider.of<MainPostsCubit>(context).getAllMainPosts(widget.userid);
     // getdata();
     // TODO: implement initState
     super.initState();

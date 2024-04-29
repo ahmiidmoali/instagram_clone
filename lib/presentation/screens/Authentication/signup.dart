@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/constants/images.dart';
+import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/presentation/widgets/Authentication/login/customtextbutton_login.dart';
 
 import '../../widgets/Authentication/login/custombutton_login.dart';

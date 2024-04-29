@@ -5,8 +5,8 @@ class PostsRepository {
   final PostsWebServices postsWebServices;
   PostsRepository(this.postsWebServices);
 
-  Future<List<Posts>> getAllPosts() async {
-    final posts = await postsWebServices.getAllPosts();
+  Future<List<Posts>> getAllPosts(String id) async {
+    final posts = await postsWebServices.getAllPosts(id);
     return posts.map((posts) => Posts.fromJson(posts)).toList();
     // return posts.map((posts) => Posts.fromJson(posts)).toList();
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/constants/colors.dart';
+import 'package:instagram_clone/core/constants/colors.dart';
 
 class customMidButtonProfile extends StatelessWidget {
   final String data;

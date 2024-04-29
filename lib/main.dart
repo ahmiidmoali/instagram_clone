@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/app_router.dart';
 
-void main() {
+import 'package:shared_preferences/shared_preferences.dart';
+
+late SharedPreferences sharedPreferences;
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  sharedPreferences = await SharedPreferences.getInstance();
   runApp(MyApp(
     appRouter: AppRouter(),
   ));
@@ -9,7 +14,10 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final AppRouter appRouter;
-  const MyApp({super.key, required this.appRouter});
+  const MyApp({
+    super.key,
+    required this.appRouter,
+  });
 
   // This widget is the root of your application.
   @override

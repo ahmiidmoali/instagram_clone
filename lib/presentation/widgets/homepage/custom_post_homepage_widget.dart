@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/constants/links.dart';
+import 'package:instagram_clone/core/constants/links.dart';
 
-import '../../../constants/colors.dart';
-import '../../../constants/images.dart';
+import '../../../core/constants/colors.dart';
+import '../../../core/constants/images.dart';
 import '../../../data/models/mainposts.dart';
 
 class CustomPostHomePageWidget extends StatelessWidget {
