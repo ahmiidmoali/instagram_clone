@@ -10,6 +10,7 @@ class PostsCubit extends Cubit<PostsState> {
   final PostsRepository postsRepository;
   List<Posts> posts = [];
   PostsCubit(this.postsRepository) : super(PostsInitial());
+
   Future<List<Posts>> getAllPosts(String id) async {
     await postsRepository.getAllPosts(id).then((posts) {
       emit(PostsLoaded(posts));

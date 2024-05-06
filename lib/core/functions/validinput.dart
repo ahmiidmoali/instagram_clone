@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 enum Validtype { username, mobile, email, somthingelse }
 
-validInput(String val, int min, int max, type) {
+validInput(String val, int min, int max, Validtype type) {
   if (val.isEmpty) {
     return "can't be empty";
   }

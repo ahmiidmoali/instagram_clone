@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/links.dart';
+import 'package:instagram_clone/core/constants/routes.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';
@@ -38,10 +41,16 @@ class CustomPostHomePageWidget extends StatelessWidget {
                           )),
                       Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text(
-                          mainPosts[index].usersName!,
-                          style: TextStyle(
-                              fontSize: 20, color: MyColors.secondary1),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, MyRoutes.profileScreen,
+                                arguments: mainPosts[index].usersId.toString());
+                          },
+                          child: Text(
+                            mainPosts[index].usersName!,
+                            style: TextStyle(
+                                fontSize: 20, color: MyColors.secondary1),
+                          ),
                         ),
                       ),
                       const Spacer(),

@@ -4,11 +4,12 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
+import 'package:instagram_clone/core/constants/routes.dart';
 
 import 'package:instagram_clone/main.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/homepage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/profilepage.dart';
-import 'package:instagram_clone/presentation/screens/homescreen/reelspage.dart';
+import 'package:instagram_clone/presentation/screens/homescreen/addPost.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/searchpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -28,13 +29,13 @@ class homeScreen extends StatefulWidget {
 
 class _homeScreenState extends State<homeScreen> {
   //-------temporaryLogic-------
-  // List<User> user = user[0].usersId;
+
   int currentPage = 0;
 
   List mypages = [
     const homePage(),
-    const reelsPage(),
     const searchPage(),
+    const addPost(),
     const profilePage()
   ];
   setCurrentPage(int currentPage) {
@@ -44,11 +45,6 @@ class _homeScreenState extends State<homeScreen> {
       setState(() {});
     }
   }
-
-  // PostsWebServices postsWebServices = PostsWebServices();
-  // getdata() async {
-  //   await postsWebServices.getAllPosts();
-  // }
 
   @override
   void initState() {
@@ -71,7 +67,9 @@ class _homeScreenState extends State<homeScreen> {
             onPressed: () {},
           ),
           CustomPostIconButton(
-            icon: Icons.messenger_outline_outlined,
+            icon: currentPage == 3
+                ? Icons.settings
+                : Icons.messenger_outline_outlined,
             onPressed: () {},
           )
         ],
@@ -99,20 +97,42 @@ class _homeScreenState extends State<homeScreen> {
         ),
       ),
       backgroundColor: MyColors.background,
-      bottomNavigationBar: customBottomNavigationBarHomeScreen(
-        index0: () {
-          setCurrentPage(0);
-        },
-        index1: () {
-          setCurrentPage(1);
-        },
-        index2: () {
-          setCurrentPage(2);
-        },
-        index3: () {
-          setCurrentPage(3);
-        },
-      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        notchMargin: 10,
+        child: customBottomNavigationBarHomeScreen(
+          bottomButtom: () {
+            Navigator.of(context).pushNamed(MyRoutes.addPost);
+          },
+          index0: () {
+            setCurrentPage(0);
+          },
+          index1: () {
+            setCurrentPage(1);
+          },
+          index2: () {
+            setCurrentPage(2);
+          },
+          index3: () {
+            setCurrentPage(3);
+          },
+        ),
+      )
+      // customBottomNavigationBarHomeScreen(
+      //   index0: () {
+      //     setCurrentPage(0);
+      //   },
+      //   index1: () {
+      //     setCurrentPage(1);
+      //   },
+      //   index2: () {
+      //     setCurrentPage(2);
+      //   },
+      //   index3: () {
+      //     setCurrentPage(3);
+      //   },
+      // ),
+      ,
       body: SizedBox(
         child: PageView(
           onPageChanged: (value) {},

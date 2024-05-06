@@ -6,17 +6,19 @@ class customBottomNavigationBarHomeScreen extends StatelessWidget {
   final void Function()? index1;
   final void Function()? index2;
   final void Function()? index3;
+  final void Function()? bottomButtom;
   const customBottomNavigationBarHomeScreen(
       {super.key,
       required this.index0,
       required this.index1,
       required this.index2,
-      required this.index3});
+      required this.index3,
+      required this.bottomButtom});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
+      height: 50,
       width: double.infinity,
       decoration: const BoxDecoration(
           color: MyColors.background,
@@ -40,9 +42,16 @@ class customBottomNavigationBarHomeScreen extends StatelessWidget {
                   ))),
           Expanded(
               child: IconButton(
+                  onPressed: bottomButtom,
+                  icon: const Icon(
+                    Icons.add_box_outlined,
+                    color: MyColors.secondary1,
+                  ))),
+          Expanded(
+              child: IconButton(
                   onPressed: index2,
                   icon: const Icon(
-                    Icons.dynamic_feed_outlined,
+                    Icons.redeem_rounded,
                     color: MyColors.secondary1,
                   ))),
           Expanded(

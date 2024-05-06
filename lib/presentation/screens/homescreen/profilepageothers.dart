@@ -6,6 +6,7 @@ import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 
+import '../../../bussiness_logic/posts/cubit/postsothers_cubit.dart';
 import '../../../core/constants/sharedkeys.dart';
 import '../../../data/models/profilepage.dart';
 import '../../../main.dart';
@@ -14,16 +15,74 @@ import '../../widgets/profile/custom_mid_button_profile.dart';
 import '../../widgets/profile/custom_pics_vedios_tags.dart';
 import '../../widgets/profile/customfollowing_posts_for_profile.dart';
 
-class profilePage extends StatelessWidget {
-  const profilePage({super.key});
+class profilePageOthers extends StatefulWidget {
+  final String userid;
+  const profilePageOthers({super.key, required this.userid});
+
+  @override
+  State<profilePageOthers> createState() => _profilePageOthersState();
+}
+
+class _profilePageOthersState extends State<profilePageOthers> {
+  init() async {
+    await BlocProvider.of<PostsothersCubit>(context)
+        .getAllPostsOthers(widget.userid);
+  }
+
+  @override
+  void initState() {
+    init();
+
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     late List<Posts> allPosts;
-    String posts = sharedPreferences.getString(SharedKeys.posts) ?? "0";
-    String followers = sharedPreferences.getString(SharedKeys.followers) ?? "0";
-    String following = sharedPreferences.getString(SharedKeys.following) ?? "0";
+    String posts = "0";
+    String followers = "0";
+    String following = "0";
+
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: MyColors.background,
+        leadingWidth: 150,
+        actions: [
+          CustomPostIconButton(
+            icon: Icons.favorite_border_outlined,
+            onPressed: () {},
+          ),
+          CustomPostIconButton(
+            icon: Icons.messenger_outline_outlined,
+            onPressed: () {
+              setState(() {});
+            },
+          )
+        ],
+        leading: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 8,
+              ),
+              child: Image.asset(
+                Myimages.loginlogo,
+                width: 100,
+                height: 50,
+                color: MyColors.secondary1,
+                fit: BoxFit.fill,
+              ),
+            ),
+            Expanded(
+              child: CustomPostIconButton(
+                icon: Icons.expand_more_outlined,
+                onPressed: () {},
+              ),
+            )
+          ],
+        ),
+      ),
       backgroundColor: MyColors.background,
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -47,21 +106,32 @@ class profilePage extends StatelessWidget {
                       width: 100,
                       fit: BoxFit.fill,
                     )),
-                Row(
-                  children: [
-                    customFollowingPostsForProfile(
-                      dataInt: posts,
-                      dataString: "Posts",
-                    ),
-                    customFollowingPostsForProfile(
-                      dataInt: followers,
-                      dataString: "Followers",
-                    ),
-                    customFollowingPostsForProfile(
-                      dataInt: following,
-                      dataString: "Following",
-                    )
-                  ],
+                BlocBuilder<PostsothersCubit, PostsothersState>(
+                  builder: (context, state) {
+                    if (state is PostsothersLoaded) {
+                      print("here we go");
+                      posts = state.postscount.toString();
+                      followers = state.followers.toString();
+                      following = state.following.toString();
+                    }
+
+                    return Row(
+                      children: [
+                        customFollowingPostsForProfile(
+                          dataInt: posts,
+                          dataString: "Posts",
+                        ),
+                        customFollowingPostsForProfile(
+                          dataInt: followers,
+                          dataString: "Followers",
+                        ),
+                        customFollowingPostsForProfile(
+                          dataInt: following,
+                          dataString: "Following",
+                        )
+                      ],
+                    );
+                  },
                 )
               ],
             ),
@@ -118,9 +188,9 @@ class profilePage extends StatelessWidget {
               ],
             ),
             //------------------all generated pics & vedios & tags-------------------
-            BlocBuilder<PostsCubit, PostsState>(
+            BlocBuilder<PostsothersCubit, PostsothersState>(
               builder: (context, state) {
-                if (state is PostsLoaded) {
+                if (state is PostsothersLoaded) {
                   allPosts = state.posts;
 
                   return GridView.builder(

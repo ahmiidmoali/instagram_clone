@@ -2,6 +2,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:instagram_clone/core/constants/links.dart';
+import 'package:instagram_clone/main.dart';
+
+import '../../core/constants/sharedkeys.dart';
 
 class PostsWebServices {
   Future<List> getAllPosts(String id) async {
@@ -10,40 +13,38 @@ class PostsWebServices {
           await http.post(Uri.parse(MyLink.profileScreen), body: {"id": id});
 
       Map responsebody = jsonDecode(response.body);
+      sharedPreferences.setString(
+          SharedKeys.posts, responsebody["posts"].toString());
+      sharedPreferences.setString(
+          SharedKeys.followers, responsebody["followers"].toString());
+      sharedPreferences.setString(
+          SharedKeys.following, responsebody["following"].toString());
 
-      print("${responsebody["data"]}");
-      return responsebody["data"];
+      print("${responsebody["allposts"]}");
+      return responsebody["allposts"];
     } catch (e) {
       print("$e error");
       return [];
     }
   }
+
+  Future<List> getAllPostsothers(String id) async {
+    try {
+      var response =
+          await http.post(Uri.parse(MyLink.profileScreen), body: {"id": id});
+
+      Map responsebody = jsonDecode(response.body);
+
+      print("here we go ${responsebody}");
+      return [
+        responsebody["posts"],
+        responsebody["followers"],
+        responsebody["following"],
+        responsebody["allposts"]
+      ];
+    } catch (e) {
+      print("$e error");
+      return [0, 0, 0, []];
+    }
+  }
 }
-
-
-// class PostsWebServices {
-//   late Dio dio;
-//   PostsWebServices() {
-//     BaseOptions baseOptions = BaseOptions(
-//         baseUrl: 'http://10.0.2.2:8012/instagramclonebend/',
-//         receiveDataWhenStatusError: true,
-//         connectTimeout: Duration(seconds: 20),
-//         receiveTimeout: Duration(seconds: 20));
-//     dio = Dio(baseOptions);
-//   }
-//   Future<Map> getAllPosts() async {
-//     try {
-//       Response response =
-//           await dio.post('home.php', queryParameters: {"id": "1"});
-
-//       // print("${response.data[1]}");
-//       print("okokokokko");
-//       Map responsebody = jsonDecode(response.data);
-//       return responsebody;
-//     } catch (e) {
-//       print(e);
-//       print("not ok");
-//       return {};
-//     }
-//   }
-// }
