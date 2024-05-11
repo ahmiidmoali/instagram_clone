@@ -66,7 +66,7 @@ class CustomPostHomePageWidget extends StatelessWidget {
                       height: 250,
                       color: MyColors.secondary2,
                       child: Image.network(
-                        MyLink.Posts + mainPosts[index].postsUrl!,
+                        MyLink.imagesLink + mainPosts[index].postsUrl!,
                         height: 100,
                         width: double.infinity,
                         fit: BoxFit.fill,

@@ -1,8 +1,6 @@
 import 'package:instagram_clone/data/models/posts.dart';
 import 'package:instagram_clone/data/web_services/posts_web_services.dart';
 
-import '../models/profilepage.dart';
-
 class PostsRepository {
   final PostsWebServices postsWebServices;
   PostsRepository(this.postsWebServices);
@@ -13,12 +11,13 @@ class PostsRepository {
   // }
   Future<List<Posts>> getAllPosts(String id) async {
     final posts = await postsWebServices.getAllPosts(id);
+    // print("the current  posts ${posts}");
     return posts.map((posts) => Posts.fromJson(posts)).toList();
   }
 
   Future<List> getAllPostsothers(String id) async {
     final posts = await postsWebServices.getAllPostsothers(id);
-    print(posts.length);
+    // print(posts.length);
 
     String followers = posts[1].toString();
     String hposts = posts[0].toString();

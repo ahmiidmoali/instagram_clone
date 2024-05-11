@@ -4,18 +4,19 @@ import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/links.dart';
+import 'package:instagram_clone/core/shared/loadingscreen.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 
 import '../../../core/constants/sharedkeys.dart';
-import '../../../data/models/profilepage.dart';
+
 import '../../../main.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/profile/custom_mid_button_profile.dart';
 import '../../widgets/profile/custom_pics_vedios_tags.dart';
 import '../../widgets/profile/customfollowing_posts_for_profile.dart';
 
-class profilePage extends StatelessWidget {
-  const profilePage({super.key});
+class ProfilePage extends StatelessWidget {
+  const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -135,18 +136,13 @@ class profilePage extends StatelessWidget {
                       itemBuilder: (context, index) => Container(
                           color: MyColors.secondary2,
                           child: Image.network(
-                            MyLink.Posts + allPosts[index].postsUrl!,
+                            MyLink.imagesLink + allPosts[index].postsUrl!,
                             height: 100,
                             width: 100,
                             fit: BoxFit.fill,
                           )));
                 } else {
-                  return const Center(
-                    child: Text(
-                      "loading .............",
-                      style: TextStyle(color: MyColors.secondary1),
-                    ),
-                  );
+                  return const LoadingScreen();
                 }
               },
             ),

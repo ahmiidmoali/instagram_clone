@@ -13,14 +13,16 @@ class PostsWebServices {
           await http.post(Uri.parse(MyLink.profileScreen), body: {"id": id});
 
       Map responsebody = jsonDecode(response.body);
+
+      //------- restore count(posts_followers-following)-----------------
       sharedPreferences.setString(
           SharedKeys.posts, responsebody["posts"].toString());
       sharedPreferences.setString(
           SharedKeys.followers, responsebody["followers"].toString());
       sharedPreferences.setString(
           SharedKeys.following, responsebody["following"].toString());
-
-      print("${responsebody["allposts"]}");
+//---------------------------------
+      // print("${responsebody["allposts"]}");
       return responsebody["allposts"];
     } catch (e) {
       print("$e error");
@@ -35,7 +37,7 @@ class PostsWebServices {
 
       Map responsebody = jsonDecode(response.body);
 
-      print("here we go ${responsebody}");
+      // print("here we go ${responsebody}");
       return [
         responsebody["posts"],
         responsebody["followers"],

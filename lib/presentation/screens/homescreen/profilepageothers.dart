@@ -8,22 +8,22 @@ import 'package:instagram_clone/data/models/posts.dart';
 
 import '../../../bussiness_logic/posts/cubit/postsothers_cubit.dart';
 import '../../../core/constants/sharedkeys.dart';
-import '../../../data/models/profilepage.dart';
+
 import '../../../main.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/profile/custom_mid_button_profile.dart';
 import '../../widgets/profile/custom_pics_vedios_tags.dart';
 import '../../widgets/profile/customfollowing_posts_for_profile.dart';
 
-class profilePageOthers extends StatefulWidget {
+class ProfilePageOthers extends StatefulWidget {
   final String userid;
-  const profilePageOthers({super.key, required this.userid});
+  const ProfilePageOthers({super.key, required this.userid});
 
   @override
-  State<profilePageOthers> createState() => _profilePageOthersState();
+  State<ProfilePageOthers> createState() => _ProfilePageOthersState();
 }
 
-class _profilePageOthersState extends State<profilePageOthers> {
+class _ProfilePageOthersState extends State<ProfilePageOthers> {
   init() async {
     await BlocProvider.of<PostsothersCubit>(context)
         .getAllPostsOthers(widget.userid);
@@ -32,8 +32,6 @@ class _profilePageOthersState extends State<profilePageOthers> {
   @override
   void initState() {
     init();
-
-    // TODO: implement initState
     super.initState();
   }
 
@@ -109,7 +107,6 @@ class _profilePageOthersState extends State<profilePageOthers> {
                 BlocBuilder<PostsothersCubit, PostsothersState>(
                   builder: (context, state) {
                     if (state is PostsothersLoaded) {
-                      print("here we go");
                       posts = state.postscount.toString();
                       followers = state.followers.toString();
                       following = state.following.toString();
@@ -205,7 +202,7 @@ class _profilePageOthersState extends State<profilePageOthers> {
                       itemBuilder: (context, index) => Container(
                           color: MyColors.secondary2,
                           child: Image.network(
-                            MyLink.Posts + allPosts[index].postsUrl!,
+                            MyLink.imagesLink + allPosts[index].postsUrl!,
                             height: 100,
                             width: 100,
                             fit: BoxFit.fill,

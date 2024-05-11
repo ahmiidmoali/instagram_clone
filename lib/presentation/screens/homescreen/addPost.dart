@@ -6,17 +6,22 @@ import 'package:instagram_clone/bussiness_logic/posts/cubit/addposts_cubit.dart'
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/functions/validinput.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/functions/uploadfile.dart';
+import '../../widgets/addpost/customactionpostbutton.dart';
+import '../../widgets/addpost/customcameraorgallery.dart';
+import '../../widgets/addpost/customcaptionformfield.dart';
+import '../../widgets/addpost/customshowimage.dart';
 
-class addPost extends StatefulWidget {
-  const addPost({super.key});
+class AddPost extends StatefulWidget {
+  const AddPost({super.key});
 
   @override
-  State<addPost> createState() => _addPostState();
+  State<AddPost> createState() => _AddPostState();
 }
 
-class _addPostState extends State<addPost> {
+class _AddPostState extends State<AddPost> {
   late TextEditingController captionController;
   File? image;
   GlobalKey<FormState> formstate = GlobalKey<FormState>();
@@ -53,15 +58,12 @@ class _addPostState extends State<addPost> {
   @override
   void initState() {
     captionController = TextEditingController();
-    // TODO: implement initState
     super.initState();
   }
 
   @override
   void dispose() {
     captionController.clear();
-
-    // TODO: implement dispose
     super.dispose();
   }
 
@@ -82,105 +84,26 @@ class _addPostState extends State<addPost> {
               icon: const Icon(Icons.close_outlined,
                   size: 30, color: MyColors.secondary1)),
           actions: [
-            BlocBuilder<AddPostsCubit, AddPostsState>(
-              builder: (context, state) {
-                // if (state is AddPostsLoading) {
-                //   return 
-                // }
-                return Center(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      onTap: () {
-                        addData();
-                      },
-                      child: const Text(
-                        "Post",
-                        style:
-                            TextStyle(fontSize: 20, color: MyColors.secondary3),
-                      ),
-                    ),
-                  ),
-                );
+            CustomActionPostButton(
+              onTap: () {
+                addData();
               },
             )
           ],
         ),
         body: ListView(
           children: [
-            if (image != null)
-              Container(
-                color: MyColors.secondary2,
-                height: 350,
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Image.file(
-                  image!,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            if (image == null)
-              Container(
-                  color: MyColors.secondary2,
-                  height: 350,
-                  width: double.infinity,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Image.asset(
-                    Myimages.post1,
-                    fit: BoxFit.contain,
-                  )),
-            SizedBox(
-              height: 60,
-              child: Row(
-                children: [
-                  const Text(
-                    "Recents",
-                    style: TextStyle(fontSize: 30, color: MyColors.secondary1),
-                  ),
-                  IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.expand_more_outlined,
-                          size: 30, color: MyColors.secondary1)),
-                  const Spacer(),
-                  IconButton(
-                      onPressed: () {
-                        chooseCamera();
-                      },
-                      icon: const Icon(Icons.add_to_photos_outlined,
-                          size: 30, color: MyColors.secondary1)),
-                  IconButton(
-                      onPressed: () {
-                        chooseGallery();
-                      },
-                      icon: const Icon(Icons.add_a_photo_outlined,
-                          size: 30, color: MyColors.secondary1)),
-                ],
-              ),
+            CustomShowImage(image: image),
+            CustomCameraorGallery(
+              chooseCamera: () {
+                chooseCamera();
+              },
+              chooseGallery: () {
+                chooseGallery();
+              },
             ),
-            Form(
-              key: formstate,
-              child: SizedBox(
-                  child: TextFormField(
-                validator: (value) {
-                  return validInput(value!, 1, 255, Validtype.somthingelse);
-                },
-                maxLines: 5,
-                minLines: 1,
-                style: const TextStyle(color: MyColors.secondary1),
-                decoration: const InputDecoration(
-                    border: UnderlineInputBorder(
-                      borderSide: BorderSide(color: MyColors.background),
-                    ),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
-                    hintText: "Write a Caption",
-                    hintStyle: TextStyle(color: MyColors.secondary1)),
-              )),
-            ),
+            Form(key: formstate, child: const CustomCaptionFormField()),
           ],
         ));
   }
 }
-
-// const snackBar = SnackBar(
-//   content: Text('Yay! A SnackBar!'),
-// );

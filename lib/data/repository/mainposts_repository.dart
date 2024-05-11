@@ -10,6 +10,7 @@ class MainPostsRepository {
 
   Future<List<MainPosts>> getAllMainPosts(String id) async {
     final posts = await mainPostsWebServices.getAllmainPosts(id);
+
     return posts.map((posts) => MainPosts.fromJson(posts)).toList();
   }
 }

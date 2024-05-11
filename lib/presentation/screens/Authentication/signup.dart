@@ -6,14 +6,14 @@ import '../../widgets/Authentication/login/custombutton_login.dart';
 import '../../widgets/Authentication/login/customtextformfield_login.dart';
 import '../../widgets/Authentication/signup/customtextformfield_signup.dart';
 
-class signup extends StatefulWidget {
-  const signup({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<signup> createState() => _signupState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _signupState extends State<signup> {
+class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

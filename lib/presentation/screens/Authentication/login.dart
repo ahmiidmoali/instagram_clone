@@ -6,23 +6,18 @@ import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/functions/validinput.dart';
 import 'package:instagram_clone/data/models/usermodel.dart';
-import 'package:instagram_clone/presentation/screens/Authentication/signup.dart';
-import 'package:instagram_clone/presentation/screens/homescreen/homescreen.dart';
-import 'package:instagram_clone/presentation/screens/homescreen/profilepage.dart';
 import 'package:instagram_clone/presentation/widgets/Authentication/login/customtextbutton_login.dart';
-
-import '../../../bussiness_logic/posts/cubit/posts_cubit.dart';
 import '../../widgets/Authentication/login/custombutton_login.dart';
 import '../../widgets/Authentication/login/customtextformfield_login.dart';
 
-class login extends StatefulWidget {
-  const login({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<login> createState() => _loginState();
+  State<Login> createState() => _LoginState();
 }
 
-class _loginState extends State<login> {
+class _LoginState extends State<Login> {
   List<User> user = [];
   GlobalKey<FormState> formstate = GlobalKey();
   late TextEditingController emailController;

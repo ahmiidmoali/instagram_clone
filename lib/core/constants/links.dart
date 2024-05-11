@@ -4,5 +4,6 @@ class MyLink {
   static const String mainScreen = "$_baseLink/mainpage.php";
   static const String login = "$_baseLink/auth/login.php";
   static const String addPost = "$_baseLink/post_image/add.php";
-  static const String Posts = "$_baseLink/images/";
+  static const String searchPage = "$_baseLink/search.php";
+  static const String imagesLink = "$_baseLink/images/";
 }

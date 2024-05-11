@@ -11,7 +11,7 @@ class MainPostsWebServices {
 
       Map responsebody = jsonDecode(response.body);
 
-      print("${responsebody["data"]}");
+      // print("${responsebody["data"]}");
       return responsebody["data"];
     } catch (e) {
       print("$e error dsdddddddddddddddddddddddddddddddddddd");

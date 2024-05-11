@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
+import 'package:instagram_clone/bussiness_logic/searchpage/cubit/searchpage_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 
@@ -19,24 +20,24 @@ import '../../../data/web_services/posts_web_services.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/homescreen/custom_bottom_navigationbar_homescreen.dart';
 
-class homeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final String userid;
-  const homeScreen({super.key, required this.userid});
+  const HomeScreen({super.key, required this.userid});
 
   @override
-  State<homeScreen> createState() => _homeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _homeScreenState extends State<homeScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   //-------temporaryLogic-------
 
   int currentPage = 0;
 
   List mypages = [
-    const homePage(),
-    const searchPage(),
-    const addPost(),
-    const profilePage()
+    const HomePage(),
+    SearchPage(),
+    const AddPost(),
+    const ProfilePage()
   ];
   setCurrentPage(int currentPage) {
     if (this.currentPage != currentPage) {
@@ -48,8 +49,10 @@ class _homeScreenState extends State<homeScreen> {
 
   @override
   void initState() {
-    BlocProvider.of<PostsCubit>(context).getAllPosts(widget.userid);
     BlocProvider.of<MainPostsCubit>(context).getAllMainPosts(widget.userid);
+    BlocProvider.of<PostsCubit>(context).getAllPosts(widget.userid);
+    BlocProvider.of<SearchpageCubit>(context).getAllPosts(widget.userid);
+
     // getdata();
     // TODO: implement initState
     super.initState();
@@ -117,22 +120,7 @@ class _homeScreenState extends State<homeScreen> {
             setCurrentPage(3);
           },
         ),
-      )
-      // customBottomNavigationBarHomeScreen(
-      //   index0: () {
-      //     setCurrentPage(0);
-      //   },
-      //   index1: () {
-      //     setCurrentPage(1);
-      //   },
-      //   index2: () {
-      //     setCurrentPage(2);
-      //   },
-      //   index3: () {
-      //     setCurrentPage(3);
-      //   },
-      // ),
-      ,
+      ),
       body: SizedBox(
         child: PageView(
           onPageChanged: (value) {},

@@ -9,6 +9,7 @@ class MainPosts {
   String? usersName;
   String? usersFullname;
   int? usersId;
+  String? usersProfilepic;
   int? followId;
 
   MainPosts(
@@ -22,6 +23,7 @@ class MainPosts {
       this.usersName,
       this.usersFullname,
       this.usersId,
+      this.usersProfilepic,
       this.followId});
 
   MainPosts.fromJson(Map<String, dynamic> json) {
@@ -35,6 +37,7 @@ class MainPosts {
     usersName = json['users_name'];
     usersFullname = json['users_fullname'];
     usersId = json['users_id'];
+    usersProfilepic = json['users_profilepic'];
     followId = json['follow_id'];
   }
 
@@ -50,6 +53,7 @@ class MainPosts {
     data['users_name'] = this.usersName;
     data['users_fullname'] = this.usersFullname;
     data['users_id'] = this.usersId;
+    data['users_profilepic'] = this.usersProfilepic;
     data['follow_id'] = this.followId;
     return data;
   }
