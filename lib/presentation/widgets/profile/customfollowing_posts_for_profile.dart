@@ -11,7 +11,7 @@ class customFollowingPostsForProfile extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100,
-      width: 70,
+      width: 95,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         mainAxisSize: MainAxisSize.min,
@@ -22,7 +22,7 @@ class customFollowingPostsForProfile extends StatelessWidget {
           ),
           Text(
             dataString,
-            style: const TextStyle(fontSize: 12, color: MyColors.secondary1),
+            style: const TextStyle(fontSize: 19, color: MyColors.secondary1),
           ),
         ],
       ),

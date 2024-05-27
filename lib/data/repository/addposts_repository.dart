@@ -8,7 +8,7 @@ class AddPostsRepository {
   final AddPostsWebServices addpostsWebServices;
   AddPostsRepository(this.addpostsWebServices);
 
-  Future<requestResult> addPost(Map data, File? image) async {
+  Future<RequestResult> addPost(Map data, File? image) async {
     final result = await addpostsWebServices.addPosts(data, image);
     return result;
   }

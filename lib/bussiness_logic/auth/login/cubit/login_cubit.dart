@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/constants/sharedkeys.dart';
+import 'package:instagram_clone/data/models/allusers.dart';
 import 'package:instagram_clone/data/repository/login_repository.dart';
 import 'package:instagram_clone/main.dart';
 import 'package:meta/meta.dart';
@@ -17,10 +18,11 @@ part 'login_state.dart';
 class LoginCubit extends Cubit<LoginState> {
   final LoginRepository loginRepository;
 
-  List<User> user = [];
-
   LoginCubit(this.loginRepository) : super(LoginInitial());
-  Future<List<User>> tryLogin(
+
+  List<AllUsers> user = [];
+
+  Future<List<AllUsers>> tryLogin(
       String logintype, String email, String password) async {
     emit(LoginLoading());
     try {

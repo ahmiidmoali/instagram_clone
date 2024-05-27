@@ -4,12 +4,14 @@ import '../../../core/constants/colors.dart';
 import '../../../core/functions/validinput.dart';
 
 class CustomCaptionFormField extends StatelessWidget {
-  const CustomCaptionFormField({super.key});
+  final TextEditingController? controller;
+  const CustomCaptionFormField({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         child: TextFormField(
+      controller: controller,
       validator: (value) {
         return validInput(value!, 1, 255, Validtype.somthingelse);
       },

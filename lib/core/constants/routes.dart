@@ -4,4 +4,5 @@ class MyRoutes {
   static const String homeScreen = "/homeScreen";
   static const String profileScreen = "/profileScreen";
   static const String addPost = "/addPost";
+  static const String profilePic = "/profilePic";
 }

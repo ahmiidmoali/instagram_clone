@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/addposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
+import 'package:instagram_clone/bussiness_logic/profilepic/cubit/profilepic_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/functions/validinput.dart';
@@ -16,19 +17,19 @@ import '../../widgets/addpost/customactionpostbutton.dart';
 import '../../widgets/addpost/customcameraorgallery.dart';
 import '../../widgets/addpost/customcaptionformfield.dart';
 import '../../widgets/addpost/customshowimage.dart';
+import '../../widgets/profilepic/customactionprofilepic.dart';
 
-class AddPost extends StatefulWidget {
-  const AddPost({super.key});
+class AddPic extends StatefulWidget {
+  const AddPic({super.key});
 
   @override
-  State<AddPost> createState() => _AddPostState();
+  State<AddPic> createState() => _AddPicState();
 }
 
-class _AddPostState extends State<AddPost> {
-  late TextEditingController captionController;
+class _AddPicState extends State<AddPic> {
   String myid = sharedPreferences.getString(SharedKeys.id) ?? "0";
   File? image;
-  GlobalKey<FormState> formstate = GlobalKey<FormState>();
+
   chooseCamera() async {
     image = await imageUploadCamera();
     setState(() {});
@@ -49,26 +50,10 @@ class _AddPostState extends State<AddPost> {
         ),
       ));
     }
-    if (formstate.currentState!.validate()) {
-      BlocProvider.of<AddPostsCubit>(context).addPost({
-        "id": myid,
-        "posts_disc": captionController.text,
-        "posts_type": "0",
-        "posts_private": "0",
-      }, image);
-    }
-  }
 
-  @override
-  void initState() {
-    captionController = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    captionController.clear();
-    super.dispose();
+    BlocProvider.of<ProfilepicCubit>(context).addPic({
+      "id": myid,
+    }, image);
   }
 
   @override
@@ -88,7 +73,7 @@ class _AddPostState extends State<AddPost> {
               icon: const Icon(Icons.close_outlined,
                   size: 30, color: MyColors.secondary1)),
           actions: [
-            CustomActionPostButton(
+            CustomActionProfilePicButton(
               userid: myid,
               onTap: () {
                 addData();
@@ -107,9 +92,6 @@ class _AddPostState extends State<AddPost> {
                 chooseGallery();
               },
             ),
-            Form(
-                key: formstate,
-                child: CustomCaptionFormField(controller: captionController)),
           ],
         ));
   }

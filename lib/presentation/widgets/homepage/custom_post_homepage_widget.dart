@@ -29,26 +29,33 @@ class CustomPostHomePageWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: MyColors.secondary2),
-                          child: Image.asset(
-                            Myimages.profile,
-                            height: 40,
-                            width: 40,
-                            fit: BoxFit.fill,
-                          )),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(25),
+                        child: mainPosts[index].usersProfilepic == "null"
+                            ? Image.asset(
+                                Myimages.profile,
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                MyLink.imagesLink +
+                                    mainPosts[index].usersProfilepic!,
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover,
+                              ),
+                      ),
                       Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {
                             Navigator.pushNamed(context, MyRoutes.profileScreen,
-                                arguments: mainPosts[index].usersId.toString());
+                                arguments: mainPosts[index]);
                           },
                           child: Text(
                             mainPosts[index].usersName!,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 20, color: MyColors.secondary1),
                           ),
                         ),
@@ -86,7 +93,7 @@ class CustomPostHomePageWidget extends StatelessWidget {
                         icon: Icons.send,
                         onPressed: () {},
                       ),
-                      Spacer(),
+                      const Spacer(),
                       CustomPostIconButton(
                         icon: Icons.bookmark_border_outlined,
                         onPressed: () {},

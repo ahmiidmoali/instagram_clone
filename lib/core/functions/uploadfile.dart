@@ -24,9 +24,9 @@ imageUploadGallery() async {
   }
 }
 
-enum requestResult { success, failure, catchfailure }
+enum RequestResult { success, failure, catchfailure }
 
-Future<requestResult> addRequestWithImageOne(url, data, File? image,
+Future<RequestResult> addRequestWithImageOne(url, data, File? image,
     [String? namerequest]) async {
   namerequest ??= "files";
 
@@ -55,8 +55,8 @@ Future<requestResult> addRequestWithImageOne(url, data, File? image,
   if (response.statusCode == 200 || response.statusCode == 201) {
     print(response.body);
     Map responsebody = jsonDecode(response.body);
-    return requestResult.success;
+    return RequestResult.success;
   } else {
-    return requestResult.failure;
+    return RequestResult.failure;
   }
 }

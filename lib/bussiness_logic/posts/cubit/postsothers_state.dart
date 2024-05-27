@@ -11,7 +11,8 @@ class PostsothersLoaded extends PostsothersState {
   final String postscount;
   final String followers;
   final String following;
+  final String isFollowed;
 
-  PostsothersLoaded(
-      this.posts, this.postscount, this.followers, this.following);
+  PostsothersLoaded(this.posts, this.postscount, this.followers, this.following,
+      this.isFollowed);
 }

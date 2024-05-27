@@ -8,11 +8,11 @@ import 'package:instagram_clone/main.dart';
 import '../../core/constants/sharedkeys.dart';
 import '../../core/functions/uploadfile.dart';
 
-class AddPostsWebServices {
-  Future<RequestResult> addPosts(Map data, File? image) async {
+class ProfilePicWebServices {
+  Future<RequestResult> addpic(Map data, File? image) async {
     try {
       var response = await addRequestWithImageOne(
-        MyLink.addPost,
+        MyLink.profilePicAdd,
         data,
         image,
         "imagename",
@@ -21,7 +21,7 @@ class AddPostsWebServices {
       return RequestResult.success;
     } catch (e) {
       print("$e error");
-      return RequestResult.catchfailure;
+      return RequestResult.failure;
     }
   }
 }

@@ -15,6 +15,7 @@ import 'package:instagram_clone/presentation/screens/homescreen/searchpage.dart'
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../core/constants/images.dart';
+import '../../../data/models/allusers.dart';
 import '../../../data/models/usermodel.dart';
 import '../../../data/web_services/posts_web_services.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';

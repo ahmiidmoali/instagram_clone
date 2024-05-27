@@ -12,10 +12,10 @@ class AddPostsCubit extends Cubit<AddPostsState> {
   addPost(Map data, File? image) async {
     emit(AddPostsLoading());
     var result = await addPostsRepository.addPost(data, image);
-    if (result == requestResult.success) {
+    if (result == RequestResult.success) {
       emit(AddPostsDone());
-    } else if (result == requestResult.failure ||
-        result == requestResult.catchfailure) {
+    } else if (result == RequestResult.failure ||
+        result == RequestResult.catchfailure) {
       emit(AddPostsFailure());
     }
   }

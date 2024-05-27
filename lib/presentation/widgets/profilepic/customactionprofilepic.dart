@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:instagram_clone/bussiness_logic/profilepic/cubit/profilepic_cubit.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../../bussiness_logic/posts/cubit/addposts_cubit.dart';
@@ -7,10 +8,10 @@ import '../../../bussiness_logic/posts/cubit/posts_cubit.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';
 
-class CustomActionPostButton extends StatelessWidget {
+class CustomActionProfilePicButton extends StatelessWidget {
   final String userid;
   final Function()? onTap;
-  const CustomActionPostButton(
+  const CustomActionProfilePicButton(
       {super.key, required this.onTap, required this.userid});
 
   @override
@@ -18,13 +19,13 @@ class CustomActionPostButton extends StatelessWidget {
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: BlocConsumer<AddPostsCubit, AddPostsState>(
+        child: BlocConsumer<ProfilepicCubit, ProfilepicState>(
           listener: (context, state) {
-            if (state is AddPostsDone) {
+            if (state is ProfilepicAddDone) {
               BlocProvider.of<PostsCubit>(context).getAllPosts(userid);
               Navigator.of(context).pop();
             }
-            if (state is AddPostsFailure) {
+            if (state is ProfilepicAddFailure) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text(
                   "Posting Failed please try again",
@@ -34,7 +35,7 @@ class CustomActionPostButton extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            if (state is AddPostsLoading) {
+            if (state is ProfilepicLoading) {
               return Lottie.asset(MyLottie.loading, height: 35, width: 35);
             }
             return InkWell(

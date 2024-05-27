@@ -6,7 +6,9 @@ import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/functions/validinput.dart';
 import 'package:instagram_clone/data/models/usermodel.dart';
+import 'package:instagram_clone/presentation/screens/Authentication/signup.dart';
 import 'package:instagram_clone/presentation/widgets/Authentication/login/customtextbutton_login.dart';
+import '../../../data/models/allusers.dart';
 import '../../widgets/Authentication/login/custombutton_login.dart';
 import '../../widgets/Authentication/login/customtextformfield_login.dart';
 
@@ -18,28 +20,34 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  List<User> user = [];
+  List<AllUsers> user = [];
   GlobalKey<FormState> formstate = GlobalKey();
   late TextEditingController emailController;
   late TextEditingController passwordController;
-  @override
+
   letslogin() async {
     var formdata = formstate.currentState;
     if (formdata!.validate()) {
       await BlocProvider.of<LoginCubit>(context)
           .tryLogin("email", emailController.text, passwordController.text);
-      // if (BlocProvider.of<LoginCubit>(context).login != 0) {
-
-      // }
     }
   }
 
+  @override
   void initState() {
     emailController = TextEditingController();
     passwordController = TextEditingController();
-    // TODO: implement initState
+
     super.initState();
   }
+
+  // @override
+  // void dispose() {
+  //   emailController.clear();
+  //   passwordController.clear();
+
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +104,19 @@ class _LoginState extends State<Login> {
                     if (BlocProvider.of<LoginCubit>(context).state
                         is LoginLoaded) {
                       user = BlocProvider.of<LoginCubit>(context).user;
-                      Navigator.of(context).pushNamed(MyRoutes.homeScreen,
-                          arguments: user[0].usersId.toString());
+                      Navigator.of(context)
+                          .pushNamed(MyRoutes.homeScreen, arguments: user[0]);
+                    }
+                    if (BlocProvider.of<LoginCubit>(context).state
+                        is LoginFailed) {
+                      return ScaffoldMessenger.of(context)
+                          .showSnackBar(const SnackBar(
+                        content: Text(
+                          "Wrong email or password",
+                          style: TextStyle(
+                              fontSize: 20, color: MyColors.secondary1),
+                        ),
+                      ));
                     }
                   },
                   nameOfButton: "log in",
@@ -117,7 +136,13 @@ class _LoginState extends State<Login> {
                       style:
                           TextStyle(fontSize: 15, color: MyColors.secondary1),
                     ),
-                    CustomTextButtonLogin(onPressed: () {}, data: "Sign up")
+                    CustomTextButtonLogin(
+                        onPressed: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const Signup(),
+                          ));
+                        },
+                        data: "Sign up")
                   ],
                 ),
               ],

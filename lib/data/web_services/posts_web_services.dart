@@ -21,6 +21,10 @@ class PostsWebServices {
           SharedKeys.followers, responsebody["followers"].toString());
       sharedPreferences.setString(
           SharedKeys.following, responsebody["following"].toString());
+      sharedPreferences.setString(
+          SharedKeys.myPic, responsebody["usersData"][0]["users_profilepic"]);
+      sharedPreferences.setString(
+          SharedKeys.myusername, responsebody["usersData"][0]["users_name"]);
 //---------------------------------
       // print("${responsebody["allposts"]}");
       return responsebody["allposts"];
@@ -30,10 +34,10 @@ class PostsWebServices {
     }
   }
 
-  Future<List> getAllPostsothers(String id) async {
+  Future<List> getAllPostsothers(String id, String mainid) async {
     try {
-      var response =
-          await http.post(Uri.parse(MyLink.profileScreen), body: {"id": id});
+      var response = await http.post(Uri.parse(MyLink.profileScreenother),
+          body: {"id": id, "mainid": mainid});
 
       Map responsebody = jsonDecode(response.body);
 
@@ -42,11 +46,12 @@ class PostsWebServices {
         responsebody["posts"],
         responsebody["followers"],
         responsebody["following"],
+        responsebody["isFollowed"],
         responsebody["allposts"]
       ];
     } catch (e) {
       print("$e error");
-      return [0, 0, 0, []];
+      return [0, 0, 0, 0, []];
     }
   }
 }

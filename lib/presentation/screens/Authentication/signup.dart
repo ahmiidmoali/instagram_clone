@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/presentation/widgets/Authentication/login/customtextbutton_login.dart';
 
@@ -17,6 +18,7 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: MyColors.background,
       body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: ListView(
@@ -28,6 +30,7 @@ class _SignupState extends State<Signup> {
                 margin: const EdgeInsets.symmetric(horizontal: 50),
                 child: Image.asset(
                   Myimages.loginlogo,
+                  color: MyColors.secondary1,
                   width: double.infinity,
                   height: 100,
                   fit: BoxFit.fill,
@@ -63,7 +66,7 @@ class _SignupState extends State<Signup> {
                 children: [
                   const Text(
                     "Already have an account?",
-                    style: TextStyle(fontSize: 15, color: Colors.blue),
+                    style: TextStyle(fontSize: 15, color: MyColors.secondary1),
                   ),
                   CustomTextButtonLogin(onPressed: () {}, data: "Log in")
                 ],
