@@ -74,6 +74,9 @@ class AppRouter {
                       create: (context) => postsothersCubit,
                     ),
                     BlocProvider(
+                      create: (context) => profilepicCubit,
+                    ),
+                    BlocProvider(
                       create: (context) => followCubit,
                     ),
                     BlocProvider(
@@ -108,6 +111,9 @@ class AppRouter {
                 create: (context) => postsothersCubit,
               ),
               BlocProvider(
+                create: (context) => profilepicCubit,
+              ),
+              BlocProvider(
                 create: (context) => addPostsCubit,
               ),
               BlocProvider(
@@ -125,8 +131,8 @@ class AppRouter {
             ),
           ),
         );
-      case MyRoutes.profileScreen:
-        final mainPosts = settings.arguments as MainPosts;
+      case MyRoutes.otherprofileScreen:
+        final userid = settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -138,7 +144,7 @@ class AppRouter {
               )
             ],
             child: ProfilePageOthers(
-              mainPosts: mainPosts,
+              usersId: userid,
             ),
           ),
         );

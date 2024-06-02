@@ -1,3 +1,4 @@
+import 'package:instagram_clone/data/models/allusers.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 import 'package:instagram_clone/data/web_services/posts_web_services.dart';
 
@@ -20,8 +21,11 @@ class PostsRepository {
     String following = posts[2].toString();
     String isFollowed = posts[3].toString();
     List tposts = posts[4];
+    List tuser = posts[5];
     List<Posts> fposts = tposts.map((posts) => Posts.fromJson(posts)).toList();
+    List<AllUsers> fuser =
+        tuser.map((user) => AllUsers.fromJson(user)).toList();
 
-    return [hposts, followers, following, isFollowed, fposts];
+    return [hposts, followers, following, isFollowed, fposts, fuser];
   }
 }

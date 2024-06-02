@@ -26,11 +26,11 @@ class CustomCameraorGallery extends StatelessWidget {
           const Spacer(),
           IconButton(
               onPressed: chooseCamera,
-              icon: const Icon(Icons.add_to_photos_outlined,
+              icon: const Icon(Icons.add_a_photo_outlined,
                   size: 30, color: MyColors.secondary1)),
           IconButton(
               onPressed: chooseGallery,
-              icon: const Icon(Icons.add_a_photo_outlined,
+              icon: const Icon(Icons.add_to_photos_outlined,
                   size: 30, color: MyColors.secondary1)),
         ],
       ),

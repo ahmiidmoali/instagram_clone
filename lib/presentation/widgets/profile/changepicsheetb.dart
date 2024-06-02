@@ -3,7 +3,9 @@ import 'package:instagram_clone/core/constants/colors.dart';
 
 class ChangePicSheetB extends StatelessWidget {
   final void Function()? uploadPhoto;
-  const ChangePicSheetB({super.key, required this.uploadPhoto});
+  final void Function()? deletePhoto;
+  const ChangePicSheetB(
+      {super.key, required this.uploadPhoto, required this.deletePhoto});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class ChangePicSheetB extends StatelessWidget {
                 )),
             const Divider(color: MyColors.secondary1),
             InkWell(
-                onTap: () {},
+                onTap: deletePhoto,
                 child: const CustomTextSheetB(
                   data: "Remove Current Photo",
                   color: Colors.red,

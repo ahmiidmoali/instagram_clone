@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:instagram_clone/data/models/allusers.dart';
 
 import '../../../data/models/posts.dart';
 import '../../../data/repository/posts_repository.dart';
@@ -8,6 +9,7 @@ part 'postsothers_state.dart';
 class PostsothersCubit extends Cubit<PostsothersState> {
   final PostsRepository postsRepository;
   List<Posts> posts = [];
+  List<AllUsers> user = [];
   String postscount = "0";
   String followers = "0";
   String following = "0";
@@ -16,13 +18,15 @@ class PostsothersCubit extends Cubit<PostsothersState> {
   PostsothersCubit(this.postsRepository) : super(PostsothersInitial());
 
   Future<List> getAllPostsOthers(String id, String mainid) async {
-    await postsRepository.getAllPostsothers(id, mainid).then((posts) {
-      emit(PostsothersLoaded(posts[4], posts[0], posts[1], posts[2], posts[3]));
-      postscount = posts[0];
-      followers = posts[1];
-      following = posts[2];
-      isFollowed = posts[3];
-      this.posts = posts[4];
+    await postsRepository.getAllPostsothers(id, mainid).then((data) {
+      emit(PostsothersLoaded(
+          data[4], data[5], data[0], data[1], data[2], data[3]));
+      postscount = data[0];
+      followers = data[1];
+      following = data[2];
+      isFollowed = data[3];
+      posts = data[4];
+      user = data[5];
     });
     return posts;
   }

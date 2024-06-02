@@ -13,4 +13,9 @@ class ProfilePicRepository {
     final result = await profilePicWebServices.addpic(data, image);
     return result;
   }
+
+  Future<RequestResult> deletePic(String userid) async {
+    final result = await profilePicWebServices.deletepic(userid);
+    return result;
+  }
 }

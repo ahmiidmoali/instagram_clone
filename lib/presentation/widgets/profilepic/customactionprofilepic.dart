@@ -28,7 +28,7 @@ class CustomActionProfilePicButton extends StatelessWidget {
             if (state is ProfilepicAddFailure) {
               ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                 content: Text(
-                  "Posting Failed please try again",
+                  "Uploading Failed please try again",
                   style: TextStyle(fontSize: 20, color: MyColors.secondary1),
                 ),
               ));
@@ -41,7 +41,7 @@ class CustomActionProfilePicButton extends StatelessWidget {
             return InkWell(
               onTap: onTap,
               child: const Text(
-                "Post",
+                "Done",
                 style: TextStyle(fontSize: 20, color: MyColors.secondary3),
               ),
             );

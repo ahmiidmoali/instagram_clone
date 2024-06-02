@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';
+import '../../../core/constants/links.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CustomStoryGenerator extends StatelessWidget {
-  const CustomStoryGenerator({super.key});
+  final String mypic;
+  const CustomStoryGenerator({super.key, required this.mypic});
 
   @override
   Widget build(BuildContext context) {
@@ -14,16 +17,21 @@ class CustomStoryGenerator extends StatelessWidget {
       children: [
         Column(
           children: [
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50),
-                    color: MyColors.secondary2),
-                child: Image.asset(
-                  Myimages.profile,
-                  height: 100,
-                  width: 100,
-                  fit: BoxFit.fill,
-                )),
+            ClipRRect(
+                borderRadius: BorderRadius.circular(50),
+                child: mypic == "null"
+                    ? Image.asset(
+                        Myimages.profile,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                      )
+                    : CachedNetworkImage(
+                        imageUrl: MyLink.imagesLink + mypic,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                      )),
             const Text(
               "your story",
               style: TextStyle(fontSize: 20, color: MyColors.secondary1),

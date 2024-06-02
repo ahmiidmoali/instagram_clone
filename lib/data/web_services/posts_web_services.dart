@@ -47,11 +47,12 @@ class PostsWebServices {
         responsebody["followers"],
         responsebody["following"],
         responsebody["isFollowed"],
-        responsebody["allposts"]
+        responsebody["allposts"],
+        responsebody["usersData"]
       ];
     } catch (e) {
       print("$e error");
-      return [0, 0, 0, 0, []];
+      return [0, 0, 0, 0, [], []];
     }
   }
 }

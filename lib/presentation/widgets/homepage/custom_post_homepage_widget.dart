@@ -1,9 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
-
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';
 import '../../../data/models/mainposts.dart';
@@ -30,28 +28,28 @@ class CustomPostHomePageWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(25),
-                        child: mainPosts[index].usersProfilepic == "null"
-                            ? Image.asset(
-                                Myimages.profile,
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                              )
-                            : Image.network(
-                                MyLink.imagesLink +
-                                    mainPosts[index].usersProfilepic!,
-                                width: 50,
-                                height: 50,
-                                fit: BoxFit.cover,
-                              ),
-                      ),
+                          borderRadius: BorderRadius.circular(25),
+                          child: mainPosts[index].usersProfilepic == "null"
+                              ? Image.asset(
+                                  Myimages.profile,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: MyLink.imagesLink +
+                                      mainPosts[index].usersProfilepic!,
+                                  width: 50,
+                                  height: 50,
+                                  fit: BoxFit.cover,
+                                )),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: InkWell(
                           onTap: () {
-                            Navigator.pushNamed(context, MyRoutes.profileScreen,
-                                arguments: mainPosts[index]);
+                            Navigator.pushNamed(
+                                context, MyRoutes.otherprofileScreen,
+                                arguments: mainPosts[index].usersId.toString());
                           },
                           child: Text(
                             mainPosts[index].usersName!,
@@ -72,8 +70,9 @@ class CustomPostHomePageWidget extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 2),
                       height: 250,
                       color: MyColors.secondary2,
-                      child: Image.network(
-                        MyLink.imagesLink + mainPosts[index].postsUrl!,
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            MyLink.imagesLink + mainPosts[index].postsUrl!,
                         height: 100,
                         width: double.infinity,
                         fit: BoxFit.fill,

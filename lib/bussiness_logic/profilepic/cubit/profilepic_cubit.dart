@@ -21,4 +21,15 @@ class ProfilepicCubit extends Cubit<ProfilepicState> {
       emit(ProfilepicAddFailure());
     }
   }
+
+  Future deletePic(String userid) async {
+    emit(ProfilepicLoading());
+    var result = await profilePicRepository.deletePic(userid);
+    if (result == RequestResult.success) {
+      print("successsss");
+      emit(ProfilepicDeleteDone());
+    } else if (result == RequestResult.failure) {
+      emit(ProfilepicDeleteFailure());
+    }
+  }
 }

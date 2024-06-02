@@ -62,7 +62,7 @@ class _AddPicState extends State<AddPic> {
         backgroundColor: MyColors.background,
         appBar: AppBar(
           title: const Text(
-            "New Post",
+            "Profile Picture",
             style: TextStyle(fontSize: 30, color: MyColors.secondary1),
           ),
           backgroundColor: MyColors.background,

@@ -5,6 +5,7 @@ import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/links.dart';
+import 'package:instagram_clone/data/models/allusers.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 
 import '../../../bussiness_logic/posts/cubit/postsothers_cubit.dart';
@@ -18,8 +19,11 @@ import '../../widgets/profile/custom_pics_vedios_tags.dart';
 import '../../widgets/profile/customfollowing_posts_for_profile.dart';
 
 class ProfilePageOthers extends StatefulWidget {
-  final MainPosts mainPosts;
-  const ProfilePageOthers({super.key, required this.mainPosts});
+  final String usersId;
+  const ProfilePageOthers({
+    super.key,
+    required this.usersId,
+  });
 
   @override
   State<ProfilePageOthers> createState() => _ProfilePageOthersState();
@@ -28,21 +32,9 @@ class ProfilePageOthers extends StatefulWidget {
 class _ProfilePageOthersState extends State<ProfilePageOthers> {
   String mainid = sharedPreferences.getString(SharedKeys.id) ?? "0";
 
-  // follow() {
-  //   if (isFollowed == "0") {
-  //     BlocProvider.of<FollowCubit>(context)
-  //         .followAddTry(mainid, widget.mainPosts.usersId.toString());
-  //     isFollowed = "1";
-  //   } else if (isFollowed == "1") {
-  //     BlocProvider.of<FollowCubit>(context)
-  //         .followRemoveTry(mainid, widget.mainPosts.usersId.toString());
-  //     isFollowed = "0";
-  //   }
-  // }
-
   init() async {
     await BlocProvider.of<PostsothersCubit>(context)
-        .getAllPostsOthers(widget.mainPosts.usersId.toString(), mainid);
+        .getAllPostsOthers(widget.usersId.toString(), mainid);
   }
 
   @override
@@ -54,10 +46,13 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
   @override
   Widget build(BuildContext context) {
     late List<Posts> allPosts;
+    late List<AllUsers> user;
     String isFollowed = BlocProvider.of<PostsothersCubit>(context).isFollowed;
     String posts = "0";
     String followers = "0";
     String following = "0";
+    String picname = "null";
+    String username = "       ";
 
     return Scaffold(
       appBar: AppBar(
@@ -104,64 +99,70 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
             height: 30,
           ),
           //------------pic & followers & following--------------------
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(50),
-                child: widget.mainPosts.usersProfilepic == "null"
-                    ? Image.asset(
-                        Myimages.profile,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      )
-                    : Image.network(
-                        MyLink.imagesLink + widget.mainPosts.usersProfilepic!,
-                        width: 100,
-                        height: 100,
-                        fit: BoxFit.cover,
-                      ),
-              ),
-              BlocBuilder<PostsothersCubit, PostsothersState>(
-                builder: (context, state) {
-                  if (state is PostsothersLoaded) {
-                    posts = state.postscount.toString();
-                    followers = state.followers.toString();
-                    following = state.following.toString();
-                  }
+          BlocBuilder<PostsothersCubit, PostsothersState>(
+            builder: (context, state) {
+              if (state is PostsothersLoaded) {
+                posts = state.postscount.toString();
+                followers = state.followers.toString();
+                following = state.following.toString();
+                user = state.user;
+                picname = user[0].usersProfilepic ?? "null";
+                username = user[0].usersName ?? "     ";
+              }
 
-                  return Row(
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
                     children: [
-                      customFollowingPostsForProfile(
-                        dataInt: posts,
-                        dataString: "Posts",
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: picname == "null"
+                            ? Image.asset(
+                                Myimages.profile,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              )
+                            : Image.network(
+                                MyLink.imagesLink + user[0].usersProfilepic!,
+                                width: 100,
+                                height: 100,
+                                fit: BoxFit.cover,
+                              ),
                       ),
-                      customFollowingPostsForProfile(
-                        dataInt: followers,
-                        dataString: "Followers",
+                      Row(
+                        children: [
+                          customFollowingPostsForProfile(
+                            dataInt: posts,
+                            dataString: "Posts",
+                          ),
+                          customFollowingPostsForProfile(
+                            dataInt: followers,
+                            dataString: "Followers",
+                          ),
+                          customFollowingPostsForProfile(
+                            dataInt: following,
+                            dataString: "Following",
+                          )
+                        ],
                       ),
-                      customFollowingPostsForProfile(
-                        dataInt: following,
-                        dataString: "Following",
-                      )
                     ],
-                  );
-                },
-              )
-            ],
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      username,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                          fontSize: 20, color: MyColors.secondary1),
+                      overflow: TextOverflow.fade,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
-          //------------------name-------------------
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              widget.mainPosts.usersName!,
-              textAlign: TextAlign.start,
-              style: const TextStyle(fontSize: 20, color: MyColors.secondary1),
-              overflow: TextOverflow.fade,
-            ),
-          ),
-
           //------------------Edit profile & Share profile-------------------
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -176,21 +177,14 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                   isFollowed: isFollowed,
                   onPressed: () async {
                     if (isFollowed == "0") {
-                      await BlocProvider.of<FollowCubit>(context).followAddTry(
-                          mainid, widget.mainPosts.usersId.toString());
+                      await BlocProvider.of<FollowCubit>(context)
+                          .followAddTry(mainid, widget.usersId.toString());
                       isFollowed = "1";
                     } else if (isFollowed == "1") {
                       await BlocProvider.of<FollowCubit>(context)
-                          .followRemoveTry(
-                              mainid, widget.mainPosts.usersId.toString());
+                          .followRemoveTry(mainid, widget.usersId.toString());
                       isFollowed = "0";
                     }
-                    print("done");
-                    // if (state is FollowAddDone) {
-                    //   isFollowed = "1";
-                    // } else if (state is FollowRemoveDone) {
-                    //   isFollowed = "0";
-                    // }
                   },
                 ),
               ),

@@ -24,4 +24,23 @@ class ProfilePicWebServices {
       return RequestResult.failure;
     }
   }
+
+  Future<RequestResult> deletepic(String userid) async {
+    try {
+      var response = await http
+          .post(Uri.parse(MyLink.profilePicDelete), body: {"id": userid});
+      Map responsebody = jsonDecode(response.body);
+      if (responsebody["status"] == "success") {
+        return RequestResult.success;
+      }
+      if (responsebody["status"] == "failure") {
+        return RequestResult.failure;
+      }
+
+      return RequestResult.success;
+    } catch (e) {
+      print("$e error deletepic");
+      return RequestResult.catchfailure;
+    }
+  }
 }

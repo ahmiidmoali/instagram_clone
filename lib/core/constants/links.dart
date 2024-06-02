@@ -12,4 +12,5 @@ class MyLink {
   static const String followRemove = "$_baseLink/follow/remove.php";
   //--profile pic
   static const String profilePicAdd = "$_baseLink/profilepic/changepic.php";
+  static const String profilePicDelete = "$_baseLink/profilepic/delete.php";
 }

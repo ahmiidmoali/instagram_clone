@@ -37,7 +37,7 @@ class PostDetails extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          //------------add &view stories--------------------
+          //------------the Post--------------------
           Container(
             color: MyColors.background,
             height: 400,
@@ -53,8 +53,9 @@ class PostDetails extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: .8),
                       child: InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, MyRoutes.profileScreen,
-                              arguments: mainPosts);
+                          Navigator.pushNamed(
+                              context, MyRoutes.otherprofileScreen,
+                              arguments: mainPosts.usersId.toString());
                         },
                         child: Row(
                           children: [

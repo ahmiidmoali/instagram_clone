@@ -15,6 +15,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     late List<MainPosts> allMainPosts;
     String userid = sharedPreferences.getString(SharedKeys.id) ?? "0";
+    String mypic = sharedPreferences.getString(SharedKeys.myPic) ?? "null";
     return RefreshIndicator(
       onRefresh: () async {
         await BlocProvider.of<MainPostsCubit>(context).getAllMainPosts(userid);
@@ -25,7 +26,7 @@ class HomePage extends StatelessWidget {
             height: 30,
           ),
           //------------add &view stories--------------------
-          const CustomStoryGenerator(),
+          CustomStoryGenerator(mypic: mypic),
           const SizedBox(
             height: 20,
           ),
