@@ -5,6 +5,7 @@ import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/links.dart';
+import 'package:instagram_clone/core/shared/loadingscreen.dart';
 import 'package:instagram_clone/data/models/allusers.dart';
 import 'package:instagram_clone/data/models/posts.dart';
 
@@ -108,6 +109,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                 user = state.user;
                 picname = user[0].usersProfilepic ?? "null";
                 username = user[0].usersName ?? "     ";
+                isFollowed = state.isFollowed;
               }
 
               return Column(
@@ -170,8 +172,13 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Spacer(),
-              BlocBuilder<FollowCubit, FollowState>(
-                builder: (context, state) => customFollowButtonProfile(
+              BlocBuilder<PostsothersCubit, PostsothersState>(
+                  builder: (context, state) {
+                if (state is PostsothersLoaded) {
+                  isFollowed = state.isFollowed;
+                }
+
+                return customFollowButtonProfile(
                   data: "Follow",
                   data2: "Following",
                   isFollowed: isFollowed,
@@ -186,8 +193,8 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                       isFollowed = "0";
                     }
                   },
-                ),
-              ),
+                );
+              }),
               const customMidButtonProfile(data: "Share profile"),
               Expanded(
                 child: IconButton(
