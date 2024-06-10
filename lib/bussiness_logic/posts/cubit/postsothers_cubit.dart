@@ -19,14 +19,14 @@ class PostsothersCubit extends Cubit<PostsothersState> {
 
   Future<List> getAllPostsOthers(String id, String mainid) async {
     await postsRepository.getAllPostsothers(id, mainid).then((data) {
-      emit(PostsothersLoaded(
-          data[4], data[5], data[0], data[1], data[2], data[3]));
       postscount = data[0];
       followers = data[1];
       following = data[2];
       isFollowed = data[3];
       posts = data[4];
       user = data[5];
+      emit(PostsothersLoaded(
+          data[4], data[5], data[0], data[1], data[2], data[3]));
     });
     return posts;
   }

@@ -26,10 +26,11 @@ class PostsWebServices {
       sharedPreferences.setString(
           SharedKeys.myusername, responsebody["usersData"][0]["users_name"]);
 //---------------------------------
-      // print("${responsebody["allposts"]}");
+      // print(" allposts ${responsebody["allposts"]}");
+
       return responsebody["allposts"];
     } catch (e) {
-      print("$e error");
+      print("$e error PostsWebServices ");
       return [];
     }
   }

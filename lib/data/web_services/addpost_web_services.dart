@@ -20,7 +20,7 @@ class AddPostsWebServices {
       print(response);
       return RequestResult.success;
     } catch (e) {
-      print("$e error");
+      print("$e error AddPostsWebServices");
       return RequestResult.catchfailure;
     }
   }

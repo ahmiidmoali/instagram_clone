@@ -16,7 +16,7 @@ class SearchWebServices {
 
       return [responsebody["allusers"], allposts];
     } catch (e) {
-      print("$e error");
+      print("$e error SearchWebServices");
       return [];
     }
   }

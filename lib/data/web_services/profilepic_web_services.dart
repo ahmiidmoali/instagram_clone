@@ -20,7 +20,7 @@ class ProfilePicWebServices {
       print(response);
       return RequestResult.success;
     } catch (e) {
-      print("$e error");
+      print("$e error add profile pic");
       return RequestResult.failure;
     }
   }
@@ -39,7 +39,7 @@ class ProfilePicWebServices {
 
       return RequestResult.success;
     } catch (e) {
-      print("$e error deletepic");
+      print("$e error delete profile pic");
       return RequestResult.catchfailure;
     }
   }
