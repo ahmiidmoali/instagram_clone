@@ -1,10 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
 import 'package:instagram_clone/core/constants/links.dart';
-import 'package:instagram_clone/main.dart';
-
-import '../../core/constants/sharedkeys.dart';
 
 class SearchWebServices {
   Future<List> getAllPosts(String id) async {
@@ -16,7 +12,7 @@ class SearchWebServices {
 
       return [responsebody["allusers"], allposts];
     } catch (e) {
-      print("$e error SearchWebServices");
+      // print("$e error SearchWebServices");
       return [];
     }
   }

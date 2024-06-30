@@ -9,7 +9,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
       {super.key,
       required this.hintText,
       required this.controller,
-      this.validator});
+      required this.validator});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class CustomTextFormFieldLogin extends StatelessWidget {
       decoration: BoxDecoration(
           // color: MyColors.secondary1,
           borderRadius: BorderRadius.circular(5)),
-      margin: EdgeInsets.only(bottom: 5),
+      margin: const EdgeInsets.only(bottom: 5),
       child: TextFormField(
         validator: validator,
         controller: controller,

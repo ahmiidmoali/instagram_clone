@@ -30,7 +30,7 @@ class PostsWebServices {
 
       return responsebody["allposts"];
     } catch (e) {
-      print("$e error PostsWebServices ");
+      // print("$e error PostsWebServices ");
       return [];
     }
   }
@@ -52,7 +52,7 @@ class PostsWebServices {
         responsebody["usersData"]
       ];
     } catch (e) {
-      print("$e error");
+      // print("$e error");
       return [0, 0, 0, 0, [], []];
     }
   }

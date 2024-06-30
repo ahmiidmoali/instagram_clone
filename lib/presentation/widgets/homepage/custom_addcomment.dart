@@ -2,11 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/comment/cubit/comment_cubit.dart';
-import 'package:instagram_clone/bussiness_logic/posts/cubit/addposts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/data/models/allcomments.dart';
 import 'package:instagram_clone/presentation/widgets/homepage/custom_post_homepage_widget.dart';
-
 import '../../../core/constants/images.dart';
 import '../../../core/constants/links.dart';
 import '../../../core/constants/sharedkeys.dart';
@@ -160,7 +158,7 @@ class _CustomAddCommentsheetButtonState
                       ],
                     );
                   }
-                  return Center(
+                  return const Center(
                     child: Text("no comments yet"),
                   );
                 },

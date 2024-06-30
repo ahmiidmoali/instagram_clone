@@ -13,7 +13,7 @@ class CustomTextButtonLogin extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         data,
-        style: TextStyle(fontSize: 15, color: MyColors.secondary1),
+        style: const TextStyle(fontSize: 15, color: MyColors.secondary1),
       ),
     );
   }

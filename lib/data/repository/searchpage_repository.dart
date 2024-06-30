@@ -1,10 +1,5 @@
-import 'dart:convert';
-import 'package:instagram_clone/core/constants/sharedkeys.dart';
 import 'package:instagram_clone/data/models/allusers.dart';
-import 'package:instagram_clone/data/models/posts.dart';
 import 'package:instagram_clone/data/web_services/search_web_services.dart';
-import 'package:instagram_clone/main.dart';
-
 import '../models/mainposts.dart';
 
 class SearchPageRepository {
@@ -13,7 +8,7 @@ class SearchPageRepository {
 
   Future<List> getAllData(String id) async {
     final response = await searchWebServices.getAllPosts(id);
-    print(response);
+    // print(response);
     List users = response[0];
     List posts = response[1];
     List<AllUsers> allUsers =

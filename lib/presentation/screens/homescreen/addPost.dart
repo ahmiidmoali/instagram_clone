@@ -1,14 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/addposts_cubit.dart';
-import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
-import 'package:instagram_clone/core/constants/images.dart';
-import 'package:instagram_clone/core/functions/validinput.dart';
-import 'package:lottie/lottie.dart';
-
 import '../../../core/constants/sharedkeys.dart';
 import '../../../core/functions/uploadfile.dart';
 import '../../../main.dart';

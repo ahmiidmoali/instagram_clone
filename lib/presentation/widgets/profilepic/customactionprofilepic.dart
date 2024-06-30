@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/profilepic/cubit/profilepic_cubit.dart';
 import 'package:lottie/lottie.dart';
-
-import '../../../bussiness_logic/posts/cubit/addposts_cubit.dart';
 import '../../../bussiness_logic/posts/cubit/posts_cubit.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';

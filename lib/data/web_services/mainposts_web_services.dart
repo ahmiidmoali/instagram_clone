@@ -14,7 +14,7 @@ class MainPostsWebServices {
       // print("${responsebody["data"]}");
       return responsebody["data"];
     } catch (e) {
-      print("$e error MainPostsWebServices");
+      // print("$e error MainPostsWebServices");
       return [];
     }
   }

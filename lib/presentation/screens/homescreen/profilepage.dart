@@ -8,13 +8,9 @@ import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/shared/loadingscreen.dart';
 import 'package:instagram_clone/data/models/posts.dart';
-import 'package:instagram_clone/presentation/screens/homescreen/addpic.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-
 import '../../../core/constants/sharedkeys.dart';
-
 import '../../../main.dart';
-import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/profile/changepicsheetb.dart';
 import '../../widgets/profile/custom_mid_button_profile.dart';
 import '../../widgets/profile/custom_pics_vedios_tags.dart';
@@ -128,15 +124,15 @@ class ProfilePage extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          customFollowingPostsForProfile(
+                          CustomFollowingPostsForProfile(
                             dataInt: posts,
                             dataString: "Posts",
                           ),
-                          customFollowingPostsForProfile(
+                          CustomFollowingPostsForProfile(
                             dataInt: followers,
                             dataString: "Followers",
                           ),
-                          customFollowingPostsForProfile(
+                          CustomFollowingPostsForProfile(
                             dataInt: following,
                             dataString: "Following",
                           )
@@ -147,7 +143,8 @@ class ProfilePage extends StatelessWidget {
 
                   //---name---
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: .8),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: .8, horizontal: 15),
                     child: Text(
                       username,
                       textAlign: TextAlign.start,
@@ -163,8 +160,8 @@ class ProfilePage extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Spacer(),
-                      const customMidButtonProfile(data: "Edit profile"),
-                      const customMidButtonProfile(data: "Share profile"),
+                      const CustomMidButtonProfile(data: "Edit profile"),
+                      const CustomMidButtonProfile(data: "Share profile"),
                       Expanded(
                         child: IconButton(
                             onPressed: () {},

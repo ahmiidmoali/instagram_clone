@@ -1,5 +1,4 @@
 import 'package:instagram_clone/data/models/allusers.dart';
-import 'package:instagram_clone/data/models/usermodel.dart';
 import 'package:instagram_clone/data/web_services/login_web_services.dart';
 
 class LoginRepository {

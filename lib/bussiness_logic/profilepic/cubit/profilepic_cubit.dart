@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
 import 'package:instagram_clone/core/functions/uploadfile.dart';
 import 'package:meta/meta.dart';
@@ -26,7 +25,7 @@ class ProfilepicCubit extends Cubit<ProfilepicState> {
     emit(ProfilepicLoading());
     var result = await profilePicRepository.deletePic(userid);
     if (result == RequestResult.success) {
-      print("successsss");
+      // print("successsss");
       emit(ProfilepicDeleteDone());
     } else if (result == RequestResult.failure) {
       emit(ProfilepicDeleteFailure());

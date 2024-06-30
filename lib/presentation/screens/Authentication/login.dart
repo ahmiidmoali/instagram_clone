@@ -5,8 +5,6 @@ import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/images.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/functions/validinput.dart';
-import 'package:instagram_clone/data/models/usermodel.dart';
-import 'package:instagram_clone/presentation/screens/Authentication/signup.dart';
 import 'package:instagram_clone/presentation/widgets/Authentication/login/customtextbutton_login.dart';
 import '../../../data/models/allusers.dart';
 import '../../widgets/Authentication/login/custombutton_login.dart';
@@ -97,20 +95,15 @@ class _LoginState extends State<Login> {
                   ],
                 ),
                 //--------------login button--------------------
-                CustomButtonLogin(
-                  onPressed: () async {
-                    await letslogin();
-
-                    if (BlocProvider.of<LoginCubit>(context).state
-                        is LoginLoaded) {
+                BlocListener<LoginCubit, LoginState>(
+                  listener: (context, state) {
+                    if (state is LoginLoaded) {
                       user = BlocProvider.of<LoginCubit>(context).user;
                       Navigator.of(context)
                           .pushNamed(MyRoutes.homeScreen, arguments: user[0]);
                     }
-                    if (BlocProvider.of<LoginCubit>(context).state
-                        is LoginFailed) {
-                      return ScaffoldMessenger.of(context)
-                          .showSnackBar(const SnackBar(
+                    if (state is LoginFailed) {
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text(
                           "Wrong email or password",
                           style: TextStyle(
@@ -119,7 +112,12 @@ class _LoginState extends State<Login> {
                       ));
                     }
                   },
-                  nameOfButton: "log in",
+                  child: CustomButtonLogin(
+                    onPressed: () async {
+                      await letslogin();
+                    },
+                    nameOfButton: "log in",
+                  ),
                 ),
                 // ignore: prefer_const_constructors
                 SizedBox(
@@ -138,9 +136,8 @@ class _LoginState extends State<Login> {
                     ),
                     CustomTextButtonLogin(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const Signup(),
-                          ));
+                          Navigator.of(context)
+                              .pushNamed(MyRoutes.signupScreen);
                         },
                         data: "Sign up")
                   ],

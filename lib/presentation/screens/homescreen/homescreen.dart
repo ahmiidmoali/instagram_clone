@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/searchpage/cubit/searchpage_cubit.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
-
-import 'package:instagram_clone/main.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/homepage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/profilepage.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/addPost.dart';
 import 'package:instagram_clone/presentation/screens/homescreen/searchpage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:instagram_clone/presentation/screens/homescreen/settings.dart';
 import '../../../core/constants/images.dart';
-import '../../../data/models/allusers.dart';
-import '../../../data/models/usermodel.dart';
-import '../../../data/web_services/posts_web_services.dart';
 import '../../widgets/homepage/custom_post_homepage_widget.dart';
 import '../../widgets/homescreen/custom_bottom_navigationbar_homescreen.dart';
 
@@ -36,14 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List mypages = [
     const HomePage(),
-    SearchPage(),
+    const SearchPage(),
     const AddPost(),
     const ProfilePage()
   ];
   setCurrentPage(int currentPage) {
     if (this.currentPage != currentPage) {
       this.currentPage = currentPage;
-      print(currentPage);
+      // print(currentPage);
       setState(() {});
     }
   }
@@ -53,9 +46,6 @@ class _HomeScreenState extends State<HomeScreen> {
     BlocProvider.of<MainPostsCubit>(context).getAllMainPosts(widget.userid);
     BlocProvider.of<PostsCubit>(context).getAllPosts(widget.userid);
     BlocProvider.of<SearchpageCubit>(context).getAllPosts(widget.userid);
-
-    // getdata();
-    // TODO: implement initState
     super.initState();
   }
 
@@ -74,7 +64,11 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: currentPage == 3
                 ? Icons.settings
                 : Icons.messenger_outline_outlined,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const Settings(),
+              ));
+            },
           )
         ],
         leading: Row(
@@ -104,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
-        child: customBottomNavigationBarHomeScreen(
+        child: CustomBottomNavigationBarHomeScreen(
           bottomButtom: () {
             Navigator.of(context).pushNamed(MyRoutes.addPost);
           },

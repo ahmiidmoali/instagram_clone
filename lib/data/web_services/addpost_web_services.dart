@@ -1,10 +1,6 @@
-import 'dart:convert';
 import 'dart:io';
-import 'package:http/http.dart' as http;
-
 import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/main.dart';
-
 import '../../core/constants/sharedkeys.dart';
 import '../../core/functions/uploadfile.dart';
 
@@ -17,10 +13,10 @@ class AddPostsWebServices {
         image,
         "imagename",
       );
-      print(response);
+      // print(response);
       return RequestResult.success;
     } catch (e) {
-      print("$e error AddPostsWebServices");
+      // print("$e error AddPostsWebServices");
       return RequestResult.catchfailure;
     }
   }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 
-class customBottomNavigationBarHomeScreen extends StatelessWidget {
+class CustomBottomNavigationBarHomeScreen extends StatelessWidget {
   final void Function()? index0;
   final void Function()? index1;
   final void Function()? index2;
   final void Function()? index3;
   final void Function()? bottomButtom;
-  const customBottomNavigationBarHomeScreen(
+  const CustomBottomNavigationBarHomeScreen(
       {super.key,
       required this.index0,
       required this.index1,

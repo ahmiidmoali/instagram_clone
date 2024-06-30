@@ -1,11 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:instagram_clone/data/models/allusers.dart';
-import 'package:instagram_clone/data/models/posts.dart';
 import 'package:meta/meta.dart';
-
 import '../../../data/models/mainposts.dart';
 import '../../../data/repository/searchpage_repository.dart';
-
 part 'searchpage_state.dart';
 
 class SearchpageCubit extends Cubit<SearchpageState> {

@@ -20,7 +20,7 @@ class CommentWebServices {
       }
       return RequestResult.failure;
     } catch (e) {
-      print("$e error addComment CommentWebServices");
+      // print("$e error addComment CommentWebServices");
       return RequestResult.catchfailure;
     }
   }
@@ -35,7 +35,7 @@ class CommentWebServices {
 
       return responsebody["data"];
     } catch (e) {
-      print("$e error getAllComment CommentWebServices");
+      // print("$e error getAllComment CommentWebServices");
       return [];
     }
   }

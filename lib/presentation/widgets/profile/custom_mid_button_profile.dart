@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 
-class customMidButtonProfile extends StatelessWidget {
+class CustomMidButtonProfile extends StatelessWidget {
   final String data;
 
-  const customMidButtonProfile({super.key, required this.data});
+  const CustomMidButtonProfile({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,13 @@ class customMidButtonProfile extends StatelessWidget {
   }
 }
 
-class customFollowButtonProfile extends StatelessWidget {
+class CustomFollowButtonProfile extends StatelessWidget {
   final String data;
   final String data2;
   final String isFollowed;
   final Function()? onPressed;
 
-  const customFollowButtonProfile(
+  const CustomFollowButtonProfile(
       {super.key,
       required this.data,
       required this.isFollowed,

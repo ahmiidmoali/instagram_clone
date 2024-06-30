@@ -4,14 +4,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/likepost/cubit/like_post_cubit.dart';
 import 'package:instagram_clone/core/constants/links.dart';
 import 'package:instagram_clone/core/constants/routes.dart';
-import 'package:instagram_clone/data/models/allcomments.dart';
 import 'package:instagram_clone/presentation/widgets/homepage/custom_addcomment.dart';
 import '../../../core/constants/colors.dart';
 import '../../../core/constants/images.dart';
 import '../../../core/constants/sharedkeys.dart';
 import '../../../data/models/mainposts.dart';
 import '../../../main.dart';
-import 'package:instagram_clone/bussiness_logic/comment/cubit/comment_cubit.dart';
 
 class CustomPostHomePageWidget extends StatelessWidget {
   final List<MainPosts> mainPosts;
@@ -28,7 +26,6 @@ class CustomPostHomePageWidget extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemCount: mainPosts.length,
         itemBuilder: (context, index) {
-          String isLiked = mainPosts[index].favourites.toString();
           favourites[mainPosts[index].postsId] = mainPosts[index].favourites;
           return Container(
             color: MyColors.background,

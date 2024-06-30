@@ -17,7 +17,7 @@ class MainPostsCubit extends Cubit<MainPostsState> {
       emit(MainPostsLoaded(mainPosts));
       this.mainPosts = mainPosts;
     });
-    print(mainPosts);
+    // print(mainPosts);
     return mainPosts;
   }
 }

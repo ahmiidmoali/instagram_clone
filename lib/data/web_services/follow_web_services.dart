@@ -12,7 +12,7 @@ class FollowWebServices {
 
       return RequestResult.success;
     } catch (e) {
-      print("$e error followAddTry");
+      // print("$e error followAddTry");
       return RequestResult.failure;
     }
   }
@@ -24,7 +24,7 @@ class FollowWebServices {
 
       return RequestResult.success;
     } catch (e) {
-      print("$e error followRemoveTry");
+      // print("$e error followRemoveTry");
       return RequestResult.failure;
     }
   }

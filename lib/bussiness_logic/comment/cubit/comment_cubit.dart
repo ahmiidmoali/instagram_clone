@@ -1,10 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:instagram_clone/data/repository/comment_repository.dart';
 import 'package:meta/meta.dart';
-
 import '../../../core/functions/uploadfile.dart';
 import '../../../data/models/allcomments.dart';
-
 part 'comment_state.dart';
 
 class CommentCubit extends Cubit<CommentState> {

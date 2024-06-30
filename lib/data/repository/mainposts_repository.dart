@@ -1,7 +1,4 @@
 import 'package:instagram_clone/data/models/mainposts.dart';
-import 'package:instagram_clone/data/models/posts.dart';
-import 'package:instagram_clone/data/web_services/posts_web_services.dart';
-
 import '../web_services/mainposts_web_services.dart';
 
 class MainPostsRepository {

@@ -1,10 +1,7 @@
 import 'dart:convert';
-import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 import 'package:instagram_clone/core/constants/enum.dart';
-
 import 'package:instagram_clone/core/constants/links.dart';
-import 'package:instagram_clone/core/functions/uploadfile.dart';
 
 class LikePostWebServices {
   Future<LikeResult> likeTry(String userid, String postid) async {
@@ -20,7 +17,7 @@ class LikePostWebServices {
 
       return LikeResult.failure;
     } catch (e) {
-      print("$e error LikeWebServices");
+      // print("$e error LikeWebServices");
       return LikeResult.catchfailure;
     }
   }

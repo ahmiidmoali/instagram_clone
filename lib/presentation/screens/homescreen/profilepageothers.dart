@@ -141,15 +141,15 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                               ),
                               Row(
                                 children: [
-                                  customFollowingPostsForProfile(
+                                  CustomFollowingPostsForProfile(
                                     dataInt: posts,
                                     dataString: "Posts",
                                   ),
-                                  customFollowingPostsForProfile(
+                                  CustomFollowingPostsForProfile(
                                     dataInt: followers,
                                     dataString: "Followers",
                                   ),
-                                  customFollowingPostsForProfile(
+                                  CustomFollowingPostsForProfile(
                                     dataInt: following,
                                     dataString: "Following",
                                   )
@@ -189,7 +189,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                           isFollowed = "0";
                         }
 
-                        return customFollowButtonProfile(
+                        return CustomFollowButtonProfile(
                           data: "Follow",
                           data2: "Following",
                           isFollowed: isFollowed,
@@ -208,7 +208,7 @@ class _ProfilePageOthersState extends State<ProfilePageOthers> {
                           },
                         );
                       }),
-                      const customMidButtonProfile(data: "Share profile"),
+                      const CustomMidButtonProfile(data: "Share profile"),
                       Expanded(
                         child: IconButton(
                             onPressed: () {},

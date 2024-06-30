@@ -1,8 +1,5 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:instagram_clone/data/models/usermodel.dart';
-
 import '../../core/constants/links.dart';
 
 class LoginWebServices {
@@ -20,7 +17,7 @@ class LoginWebServices {
       // print("$responsebodyList");
       return responsebodyList;
     } catch (e) {
-      print("error login request $e");
+      // print("error login request $e");
       return [];
     }
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/core/constants/colors.dart';
 
-class customFollowingPostsForProfile extends StatelessWidget {
+class CustomFollowingPostsForProfile extends StatelessWidget {
   final String dataInt;
   final String dataString;
-  const customFollowingPostsForProfile(
+  const CustomFollowingPostsForProfile(
       {super.key, required this.dataInt, required this.dataString});
 
   @override

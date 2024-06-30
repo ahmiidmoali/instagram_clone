@@ -1,17 +1,10 @@
 import 'dart:io';
-
 import 'package:bloc/bloc.dart';
-import 'package:get/get.dart';
-import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/constants/sharedkeys.dart';
 import 'package:instagram_clone/data/models/allusers.dart';
 import 'package:instagram_clone/data/repository/login_repository.dart';
 import 'package:instagram_clone/main.dart';
-import 'package:meta/meta.dart';
-import 'package:path/path.dart';
 import 'package:flutter/material.dart';
-
-import '../../../../data/models/usermodel.dart';
 
 part 'login_state.dart';
 

@@ -8,7 +8,6 @@ class PostsRepository {
 
   Future<List<Posts>> getAllPosts(String id) async {
     final posts = await postsWebServices.getAllPosts(id);
-    // print("the current  posts ${posts}");
     return posts.map((posts) => Posts.fromJson(posts)).toList();
   }
 
