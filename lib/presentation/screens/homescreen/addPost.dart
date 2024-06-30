@@ -109,7 +109,9 @@ class _AddPostState extends State<AddPost> {
             ),
             Form(
                 key: formstate,
-                child: CustomCaptionFormField(controller: captionController)),
+                child: CustomCaptionFormField(
+                    hintText: "Write a Caption",
+                    controller: captionController)),
           ],
         ));
   }

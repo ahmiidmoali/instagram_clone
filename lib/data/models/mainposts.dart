@@ -11,6 +11,7 @@ class MainPosts {
   int? usersId;
   String? usersProfilepic;
   int? followId;
+  int? favourites;
 
   MainPosts(
       {this.postsId,
@@ -24,7 +25,8 @@ class MainPosts {
       this.usersFullname,
       this.usersId,
       this.usersProfilepic,
-      this.followId});
+      this.followId,
+      this.favourites});
 
   MainPosts.fromJson(Map<String, dynamic> json) {
     postsId = json['posts_id'];
@@ -39,6 +41,7 @@ class MainPosts {
     usersId = json['users_id'];
     usersProfilepic = json['users_profilepic'];
     followId = json['follow_id'];
+    favourites = json['favourites'];
   }
 
   Map<String, dynamic> toJson() {
@@ -55,6 +58,7 @@ class MainPosts {
     data['users_id'] = this.usersId;
     data['users_profilepic'] = this.usersProfilepic;
     data['follow_id'] = this.followId;
+    data['favourites'] = this.favourites;
     return data;
   }
 }

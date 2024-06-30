@@ -5,7 +5,9 @@ import '../../../core/functions/validinput.dart';
 
 class CustomCaptionFormField extends StatelessWidget {
   final TextEditingController? controller;
-  const CustomCaptionFormField({super.key, required this.controller});
+  final String? hintText;
+  const CustomCaptionFormField(
+      {super.key, required this.controller, required this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +20,13 @@ class CustomCaptionFormField extends StatelessWidget {
       maxLines: 5,
       minLines: 1,
       style: const TextStyle(color: MyColors.secondary1),
-      decoration: const InputDecoration(
-          border: UnderlineInputBorder(
+      decoration: InputDecoration(
+          border: const UnderlineInputBorder(
             borderSide: BorderSide(color: MyColors.background),
           ),
-          contentPadding: EdgeInsets.symmetric(horizontal: 10),
-          hintText: "Write a Caption",
-          hintStyle: TextStyle(color: MyColors.secondary1)),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+          hintText: hintText,
+          hintStyle: const TextStyle(color: MyColors.secondary1)),
     ));
   }
 }

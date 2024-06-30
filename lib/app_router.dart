@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:instagram_clone/bussiness_logic/auth/login/cubit/login_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/follow/cubit/follow_cubit.dart';
+import 'package:instagram_clone/bussiness_logic/likepost/cubit/like_post_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/mainposts/cubit/mainposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/addposts_cubit.dart';
 import 'package:instagram_clone/bussiness_logic/posts/cubit/posts_cubit.dart';
@@ -10,11 +11,13 @@ import 'package:instagram_clone/bussiness_logic/profilepic/cubit/profilepic_cubi
 import 'package:instagram_clone/core/constants/routes.dart';
 import 'package:instagram_clone/core/constants/sharedkeys.dart';
 import 'package:instagram_clone/data/repository/addposts_repository.dart';
+import 'package:instagram_clone/data/repository/comment_repository.dart';
 import 'package:instagram_clone/data/repository/login_repository.dart';
 import 'package:instagram_clone/data/repository/posts_repository.dart';
 import 'package:instagram_clone/data/repository/profilepic_repository.dart';
 import 'package:instagram_clone/data/repository/searchpage_repository.dart';
 import 'package:instagram_clone/data/web_services/addpost_web_services.dart';
+import 'package:instagram_clone/data/web_services/comment_web_services.dart';
 import 'package:instagram_clone/data/web_services/follow_web_services.dart';
 import 'package:instagram_clone/data/web_services/login_web_services.dart';
 import 'package:instagram_clone/data/web_services/mainposts_web_services.dart';
@@ -30,14 +33,18 @@ import 'package:instagram_clone/presentation/screens/homescreen/homescreen.dart'
 
 import 'package:instagram_clone/presentation/screens/homescreen/profilepageothers.dart';
 
+import 'bussiness_logic/comment/cubit/comment_cubit.dart';
 import 'bussiness_logic/searchpage/cubit/searchpage_cubit.dart';
 import 'data/models/allusers.dart';
 import 'data/models/mainposts.dart';
 import 'data/repository/mainposts_repository.dart';
+import 'data/web_services/like_web_services.dart';
 
 class AppRouter {
   late PostsothersCubit postsothersCubit;
   late FollowCubit followCubit;
+  late LikePostCubit likePostCubit;
+  late CommentCubit commentCubit;
   late AddPostsCubit addPostsCubit;
   late SearchpageCubit searchpageCubit;
   late PostsCubit postsCubit;
@@ -47,6 +54,8 @@ class AppRouter {
   AppRouter() {
     postsothersCubit = PostsothersCubit(PostsRepository(PostsWebServices()));
     followCubit = FollowCubit(FollowWebServices());
+    likePostCubit = LikePostCubit(LikePostWebServices());
+    commentCubit = CommentCubit(CommentRepository(CommentWebServices()));
     addPostsCubit = AddPostsCubit(AddPostsRepository(AddPostsWebServices()));
     searchpageCubit =
         SearchpageCubit(SearchPageRepository(SearchWebServices()));
@@ -78,6 +87,12 @@ class AppRouter {
                     ),
                     BlocProvider(
                       create: (context) => followCubit,
+                    ),
+                    BlocProvider(
+                      create: (context) => likePostCubit,
+                    ),
+                    BlocProvider(
+                      create: (context) => commentCubit,
                     ),
                     BlocProvider(
                       create: (context) => addPostsCubit,
@@ -112,6 +127,12 @@ class AppRouter {
               ),
               BlocProvider(
                 create: (context) => profilepicCubit,
+              ),
+              BlocProvider(
+                create: (context) => likePostCubit,
+              ),
+              BlocProvider(
+                create: (context) => commentCubit,
               ),
               BlocProvider(
                 create: (context) => addPostsCubit,

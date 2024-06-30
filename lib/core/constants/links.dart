@@ -10,7 +10,12 @@ class MyLink {
   //-----follow
   static const String followAdd = "$_baseLink/follow/add.php";
   static const String followRemove = "$_baseLink/follow/remove.php";
+  //-----like
+  static const String likeTry = "$_baseLink/like/add.php";
   //--profile pic
   static const String profilePicAdd = "$_baseLink/profilepic/changepic.php";
   static const String profilePicDelete = "$_baseLink/profilepic/delete.php";
+  //===comment
+  static const String commentAdd = "$_baseLink/comment/add.php";
+  static const String commentView = "$_baseLink/comment/view.php";
 }
