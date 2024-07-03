@@ -1,5 +1,9 @@
 class MyLink {
-  static const String _baseLink = 'http://10.0.2.2:8012/instagramclonebend';
+  //domain
+  static const String _baseLink = 'https://abdelrahman.orkiservers.com';
+  //local
+  // static const String _baseLink = 'http://10.0.2.2:8012/instagramclonebend';
+
   static const String profileScreen = "$_baseLink/profilepage.php";
   static const String profileScreenother = "$_baseLink/otherprofilepage.php";
   static const String mainScreen = "$_baseLink/mainpage.php";

@@ -5,11 +5,13 @@ import 'package:instagram_clone/bussiness_logic/comment/cubit/comment_cubit.dart
 import 'package:instagram_clone/core/constants/colors.dart';
 import 'package:instagram_clone/data/models/allcomments.dart';
 import 'package:instagram_clone/presentation/widgets/homepage/custom_post_homepage_widget.dart';
+import 'package:jiffy/jiffy.dart';
 import '../../../core/constants/images.dart';
 import '../../../core/constants/links.dart';
 import '../../../core/constants/sharedkeys.dart';
 import '../../../main.dart';
 import '../addpost/customcaptionformfield.dart';
+import 'custom_comment.dart';
 
 class CustomAddCommentsheetButton extends StatefulWidget {
   final String postid;
@@ -74,86 +76,13 @@ class _CustomAddCommentsheetButtonState
                   if (state is CommentLoaded) {
                     allComments = state.allComments;
                     return ListView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
                       children: [
                         ...List.generate(
                             allComments.length,
-                            (index) => Padding(
-                                  padding: const EdgeInsets.only(bottom: 20),
-                                  child: Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(25),
-                                          child: allComments[index]
-                                                      .usersProfilepic ==
-                                                  "null"
-                                              ? Image.asset(
-                                                  Myimages.profile,
-                                                  width: 30,
-                                                  height: 30,
-                                                  fit: BoxFit.cover,
-                                                )
-                                              : CachedNetworkImage(
-                                                  imageUrl: MyLink.imagesLink +
-                                                      allComments[index]
-                                                          .usersProfilepic!,
-                                                  width: 50,
-                                                  height: 50,
-                                                  fit: BoxFit.cover,
-                                                )),
-                                      Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.start,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Row(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                Text(
-                                                  allComments[index]
-                                                      .usersFullname!,
-                                                  style: const TextStyle(
-                                                      color:
-                                                          MyColors.secondary1),
-                                                ),
-                                                const SizedBox(
-                                                  width: 20,
-                                                ),
-                                                const Text("time",
-                                                    style: TextStyle(
-                                                        color: MyColors
-                                                            .secondary1))
-                                              ],
-                                            ),
-                                          ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(5),
-                                            child: SizedBox(
-                                              width: 300,
-                                              child: Text(
-                                                allComments[index]
-                                                    .commentsContent!,
-                                                style: const TextStyle(
-                                                    color: MyColors.secondary1,
-                                                    overflow:
-                                                        TextOverflow.visible),
-                                                maxLines: null,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                            (index) => CustomCommentDesign(
+                                  allComments: state.allComments[index],
                                 )),
                       ],
                     );
